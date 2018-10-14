@@ -1,0 +1,82 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+	<div class="main-content">
+		<section layout="row">
+		    <md-button class="md-add" data-ui-sref="community.create"><span>接入</span></md-button>
+		    <md-button class="md-delete right" data-ng-click="ctrl.deleteCommunity()">删除</md-button>
+		</section>
+	    <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <form flex name="searchForm">
+                        <input type="text" 
+			       ng-model="ctrl.query.filter" 
+			       placeholder="输入小区名称搜索"
+			       ng-change="ctrl.search()"> 
+			</input>
+                    </form>
+                </div>
+            </md-toolbar>
+	    <md-content>
+		    <md-table-container> 
+			<div> 
+        		<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">
+            			<thead md-head md-order=""
+			      md-on-reorder="" fix-head>
+            			<tr md-row>
+                    			<th md-column><span>名称</span></th>
+                    			<th md-column><span>城市</span></th>
+                    			<th md-column><span>区域</span></th>
+                    			<th md-column><span>详细地址</span></th>
+					<th md-column><span>编辑</span></th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+            				<tr md-row md-select="community" md-select-id="name" md-auto-select data-ng-repeat="community in ctrl.communities">
+                				<td md-cell>
+							<a href="#"
+                               				data-ui-sref="community.detail({community_id: community.id})">{/community.name/}
+							</a>
+						</td>
+                				<td md-cell>
+							{/community.city/}
+                				</td>
+                				<td md-cell>
+							{/community.district/}
+                				</td>
+                				<td md-cell>
+							{/community.address/}
+                				</td>
+						<td md-cell width="100px">
+						    <md-button class="edit-button md-button md-icon-button"
+		     					    aria-label="edit"
+							    data-ui-sref="community.update({community_id: community.id})">
+							    <i class="fa fa-pencil" aria-hidden="true"></i>
+						    </md-button>
+						</td>
+						</td>
+            				</tr>
+            			</tbody>
+        		</table>
+			</div>
+    		</md-table-container>
+		<div class="bottom">
+                    <div class="left" layout="row">
+		       <span>总小区数: {/ctrl.total/}</span>
+		    </div>
+                    <div class="right">
+		        <md-button class="pagination left"
+		        	   data-ng-disabled="ctrl.query.page==0"
+		        	   data-ng-click="ctrl.previous()">
+                                   <span>上一页</span>
+                        </md-button>
+		        <md-button class="pagination"
+		        	   data-ng-disabled="ctrl.communities.length < ctrl.query.limit"
+		        	   data-ng-click="ctrl.next()">
+                                   <span>下一页</span>
+                        </md-button>
+                    </div>
+		</div>
+        </md-content>
+	</div>
+    </section>
+</div>

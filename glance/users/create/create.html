@@ -1,0 +1,61 @@
+<div class="main-container">
+    <section class="main-section">
+        <div class="main-content">
+            <form name="staticForm">
+                <div layout="row" layout-align="start start" class="form-group form-group-input">
+                    <label flex="15">姓名</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input" name="name"
+                                   aria-label="name"
+                                   data-ng-model="createItemCtrl.form.name"
+                                   data-required="required"
+                                   data-ng-pattern="/^\S*$/"
+				   data-ng-trim="true">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.name.$error.required && !staticForm.name.$pristine">
+                            <small>姓名不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" layout-align="end center" class="form-group form-group-input">
+                    <label flex="15">电话号码</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="origin" aria-label="origin"
+                                   data-ng-model="createItemCtrl.form.origin"
+                                   data-required="required">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.origin.$error.required && !staticForm.origin.$pristine">
+                            <small>电话号码不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+
+                <div layout="row" class="form-footer-button">
+                    <div flex-offset="15">
+                        <md-button class="md-raised md-primary" data-ng-click="createItemCtrl.createItem()"
+                                   data-ng-disabled="staticForm.$invalid" aria-label="create"
+                                   >添 加
+                        </md-button>
+                        <md-button class="md-primary" data-ng-click="createItemCtrl.goBack()">取 消</md-button>
+                    </div>
+                </div>
+
+            </form>
+            <div class="mask" close-Pic>  
+    		<div class="mask-box"></div>  
+    		     <div class="big-pic-wrap">  
+                         <img src="" alt="" class="bigPic" />  
+    		     </div>  
+                </div>  
+	    </div>
+
+        </div>
+    </section>
+</div>

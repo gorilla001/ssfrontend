@@ -1,0 +1,41 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+        <header layout="row" layout-align="end start">
+            <div layout-align="end center" class="operation">
+                <!--<md-button class="md-fab md-mini" aria-label="Crete Item" data-ui-sref="item.create">
+                    <md-tooltip md-direction="top">添加</md-tooltip>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+		</md-button>-->
+		<md-fab-speed-dial md-open="false" md-direction="left"
+                                   class="md-scale">
+                    <md-fab-trigger>
+                        <md-button aria-label="menu" class="md-fab md-mini">
+                            <md-tooltip md-direction="top">添加</md-tooltip>
+                    	    <i class="fa fa-plus" aria-hidden="true"></i>
+                        </md-button>
+                    </md-fab-trigger>
+                    <md-fab-actions>
+                        <md-button aria-label="start" class="md-fab md-raised md-mini"
+                                   data-ng-click="">
+                            <md-tooltip md-direction="top">配送员</md-tooltip>
+                    	    <i class="fa fa-plus" aria-hidden="true"></i>
+                        </md-button>
+                        <md-button aria-label="stop" class="md-fab md-raised md-mini"
+                                   data-ng-click="">
+                            <md-tooltip md-direction="top">质检员</md-tooltip>
+                    	    <i class="fa fa-plus" aria-hidden="true"></i>
+                        </md-button>
+		    </md-fab-actions>
+                </md-fab-speed-dial>
+            </div>
+        </header>
+	<md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="配送员" dm-tab-sref="user.list.deliver"></md-tab>
+                <md-tab label="质检员" dm-tab-sref="user.list.quality"></md-tab>
+                <md-tab label="管理员" dm-tab-sref="user.list.admin"></md-tab>
+            </md-tabs>
+            <md-content class="md-padding main-tab-content" data-ui-view></md-content>
+        </md-content>
+    </section>
+</div>

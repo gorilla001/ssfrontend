@@ -1,0 +1,10 @@
+md-checkbox .md-icon {
+     left: 15px;
+     border-radius: 0px; 
+     width: 18px;
+     height: 18px;
+}
+
+md-toolbar.md-table-toolbar .md-toolbar-tools {
+    padding: 5px;
+}

@@ -1,0 +1,19 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+        <header layout="row" layout-align="end start">
+            <div layout-align="end center" class="operation">
+            </div>
+        </header>
+	<md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="全部" dm-tab-sref="order.list.all"></md-tab>
+                <md-tab label="待支付" dm-tab-sref="order.list.unpay"></md-tab>
+                <md-tab label="待配送" dm-tab-sref="order.list.undistributed"></md-tab>
+                <md-tab label="配送中" dm-tab-sref="order.list.distributing"></md-tab>
+                <md-tab label="已完成" dm-tab-sref="order.list.finished"></md-tab>
+                <md-tab label="搜索" dm-tab-sref="order.list.search"></md-tab>
+            </md-tabs>
+            <md-content class="md-padding main-tab-content" data-ui-view></md-content>
+        </md-content>
+    </section>
+</div>

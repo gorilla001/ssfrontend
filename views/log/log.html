@@ -1,0 +1,215 @@
+<div class="main-container app-layout">
+    <section class="main-section">
+        <header layout="row" layout-align="end start">
+            <div class="info" flex>
+                <h2>日志查询</h2>
+            </div>
+        </header>
+        <div class="main-content">
+            <form name="staticForm">
+                <div layout="row">
+                    <!-- 集群名-->
+                    <div layout="row" flex="30" layout-align="start center"
+                         class="form-group form-group-select layout-align-end-start layout-row">
+                        <label>集群名 <span class="text-danger">*</span></label>
+                        <div flex flex-offset="5" layout="column">
+                            <md-input-container>
+                                <md-select data-ng-model="clusterId" aria-label="clusters-select"
+                                           data-required="required">
+                                    <md-option ng-value="cluster.id" data-ng-repeat="cluster in clusters">
+                                        {/cluster.name /}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <!-- 应用名-->
+                    <div layout="row" flex="30" flex-offset="5" layout-align="start center"
+                         class="form-group form-group-select layout-align-end-start layout-row">
+                        <label>应用名<span class="text-danger">*</span></label>
+                        <div flex flex-offset="5" layout="column">
+                            <md-input-container>
+                                <md-select data-ng-model="app" aria-label="clusters-select"
+                                           data-required="required" ng-change="getNodePorts(app.id,clusterId)"
+                                           data-md-container-class="selectdemoSelectHeader">
+                                    <md-select-header class="demo-select-header">
+                                        <input ng-model="searchKey" type="search" id="searchKey"
+                                               aria-label="search app name"
+                                               class="demo-header-searchbox">
+                                    </md-select-header>
+                                    <md-option ng-value="option"
+                                               data-ng-repeat="option in options | filter: {name: searchKey}">
+                                        {/option.name/}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <!-- 关键字-->
+                    <div layout="row" flex="30" flex-offset="5" layout-align="start center"
+                         class="form-group form-group-input">
+                        <label>关键字</label>
+                        <div flex flex-offset="5" layout="column">
+                            <input type="text" class="form-input" data-ng-model="logSearchKey">
+                        </div>
+                    </div>
+                </div>
+                <div layout="row">
+                    <!--实例名-->
+                    <div layout="row" flex="30" layout-align="start center"
+                         class="form-group form-group-select layout-align-end-start layout-row">
+                        <label>实例名</label>
+                        <div flex flex-offset="5" layout="column">
+                            <isteven-multi-select
+                                    input-model="inputNodesInfo"
+                                    output-model="nodeId"
+                                    button-label="name"
+                                    item-label="name"
+                                    tick-property="ticked"
+                                    helper-elements="all none filter"
+                                    max-height="200px"
+                                    translation="multiConfig"
+                                    max-labels="1"
+                            >
+                            </isteven-multi-select>
+                        </div>
+                    </div>
+                    <!--日志目录-->
+                    <div layout="row" flex="30" flex-offset="5" layout-align="start center"
+                         class="form-group form-group-select layout-align-end-start layout-row">
+                        <label>日志目录</label>
+                        <div flex flex-offset="5" layout="column">
+                            <isteven-multi-select
+                                    input-model="inputLogPaths"
+                                    output-model="logPaths"
+                                    button-label="logpath"
+                                    item-label="logpath"
+                                    tick-property="ticked"
+                                    helper-elements="all none filter"
+                                    max-height="200px"
+                                    translation="multiConfig"
+                                    max-labels="1"
+                            >
+                            </isteven-multi-select>
+
+                        </div>
+                    </div>
+                </div>
+                <!--查询时间范围-->
+                <div layout="row" layout-wrap class="form-group form-group-select">
+                    <div layout="row" layout-align="start center" flex="30">
+                        <label>查询时间范围</label>
+                        <div flex flex-offset="5">
+                            <select class="form-control input-sm" data-ng-model="timeRange">
+                                <option value="3">3分钟</option>
+                                <option value="10">10分钟</option>
+                                <option value="30">30分钟</option>
+                                <option value="60">1小时</option>
+                                <option value="1440">1天</option>
+                                <option value="other">精确时间</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-ng-show="timeRange === 'other'" flex="30" flex-offset="5">
+                        <label flex>起始日期 <span class="text-danger">* </span></label>
+                        <datetimepicker
+                                min-date="minDate" hour-step="hourStep"
+                                minute-step="minuteStep" ng-model="gte" show-meridian="showMeridian"
+                                date-format="yyyy-MM-dd" date-options="dateOptions"
+                                readonly-date="false"
+                                show-spinners="false"
+                                readonly-time="false"
+                                current-text="今天"
+                                clear-text="清除"
+                                close-text="关闭"
+                                mousewheel="false"
+                                date-disabled="isDisableGteDate(date, mode)"
+                                ng-required="timeRange === 'other'">
+                        </datetimepicker>
+                    </div>
+                    <div data-ng-show="timeRange === 'other'" flex="30" flex-offset="5">
+                        <label flex>截止日期 <span class="text-danger">* </span></label>
+                        <datetimepicker
+                                min-date="minDate" hour-step="hourStep"
+                                minute-step="minuteStep" ng-model="lte" show-meridian="showMeridian"
+                                date-format="yyyy-MM-dd" date-options="dateOptions"
+                                readonly-date="false"
+                                show-spinners="false"
+                                readonly-time="false"
+                                current-text="今天"
+                                clear-text="清除"
+                                close-text="关闭"
+                                mousewheel="false"
+                                date-disabled="isDisablelteDate(date, mode)"
+                                ng-required="timeRange === 'other'">
+                        </datetimepicker>
+                    </div>
+                    <div flex="60" flex-offset="5">
+                        <div layout="row" layout-align="start center">
+                            <md-button data-ng-click="getLog()" class="md-button md-raised"
+                                       data-ng-disabled="staticForm.$invalid">查询
+                            </md-button>
+                            <md-button target="_blank"
+                                       ng-disabled="!clusterlogs.logSize"
+                                       ng-href="{/clusterlogs.downloadHref/}"
+                                       ng-hide="showContextUI"
+                                       ng-class="{'md-primary': clusterlogs.logSize, 'md-raised': !clusterlogs.logSize}"
+                                       data-demo-disable>导出日志
+                            </md-button>
+                            <md-button target="_blank"
+                                       ng-disabled="!clusterlogs.logSize"
+                                       ng-href="{/contextlogs.downloadHref/}"
+                                       ng-show="showContextUI"
+                                       ng-class="{'md-primary': clusterlogs.logSize, 'md-raised': !clusterlogs.logSize}"
+                                       data-demo-disable>导出日志
+                            </md-button>
+                            <span class="text-warning"
+                                  data-ng-show="clusterlogs.logSize && clusterlogs.logSize > logDownloadToplimit">日志记录过大，只能导出前{/logDownloadToplimit/}条
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 查询 -->
+
+            </form>
+
+
+            <div>
+                <div ng-hide="showContextUI">
+                    <div class="log-screen">
+                        <ul class="list-unstyled" data-infinite-scroll="clusterlogs.getlogs()"
+                            data-infinite-scroll-distance='0'
+                            data-infinite-scroll-disabled='clusterlogs.isLoadingLogs'
+                            data-infinite-scroll-parent='true'>
+                            <li><a ng-click="getContextLog(clusterlogs.logInfo[$index],clusterlogs.logsId[$index])"
+                                   href="#"
+                                   data-ng-repeat='log in clusterlogs.logs'
+                                   data-ng-bind-html="log"></a></li>
+                        </ul>
+                        <code data-ng-show='clusterlogs.isLoadingLogs'>数据加载中...</code>
+                        <code data-ng-show='clusterlogs.logs.length == 0 && clusterlogs.isComplete'>未查询到符合条件的日志</code>
+                    </div>
+                </div>
+
+                <div ng-show="showContextUI">
+                    <div class="log-screen selected-log-list" id="contextLog">
+                        <a href="#" ng-click="returnLos()" class="btn btn-primary btn-sm hide-selected"
+                           style="position: absolute;"><span
+                                class="glyphicon glyphicon-menu-left"></span></a>
+
+                        <ul class="list-unstyled">
+                            <li id="{/contextlogs.logsId[$index]/}"
+                                data-ng-class="{'active': contextlogs.logsId[$index] === curId}"
+                                data-ng-repeat='logContext in contextlogs.logs'
+                                data-ng-bind-html="logContext"></li>
+                        </ul>
+                        <code data-ng-show='contextlogs.isLoadingLogs'>数据加载中...</code>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</div>
+

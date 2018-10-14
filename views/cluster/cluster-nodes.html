@@ -1,0 +1,22 @@
+<div class="main-container-body tab-content">
+    <div class="tab-pane active cluster-nodes" id="service-list" data-ng-show="cluster.nodes.length">
+        <div data-ng-show="isShowUpgradeFailedMsg && upgradeFailedNodes && !statusMgr.nodeStatusCount[cluster.id]['upgrading']">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" aria-label="Close" data-ng-click="closeUpgradeFailedMsg()"><span aria-hidden="true">&times;</span></button>
+              有尚未升级成功的主机，您可以尝试再次升级，如果依然有组件未能成功升级，请联系数人云客服，发送邮件到 info@shurenyun.com 或 加入QQ交流群164868857，谢谢。
+            </div>
+        </div>
+        <md-content layout="column" flex ng-include="'/views/cluster/cluster-nodes-table.html'" ng-controller="clusterNodesCtrl">
+        </md-content>
+        <div class="alert alert-warning text-center" ng-show="!contentCurPage.length">
+            未查询到符合条件的主机
+        </div>
+        <uib-pagination total-items="totalItems" items-per-page="20" ng-model="currentPage" ng-change="pageChanged()" data-ng-show="showPagination" previous-text="上一页" next-text="下一页"></uib-pagination>
+    </div>
+    <div data-ng-show="showCreateNode">
+        <h4>
+            集群中没有主机，
+            <a data-ui-sref="cluster.nodesource({clusterId:cluster.id})">添加主机</a>
+        </h4>
+    </div>
+</div>

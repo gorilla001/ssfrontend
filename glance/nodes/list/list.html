@@ -1,0 +1,91 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+	<div class="main-content">
+		<section layout="row">
+		    <md-button class="md-add" data-ui-sref="item.create"><span>添加</span></md-button>
+		    <md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
+		    <md-button class="md-second" data-ng-click="ctrl.disableItem()">下架</md-button>
+		    <md-button class="md-delete right" data-ng-click="ctrl.deleteItem()">删除</md-button>
+		</section>
+	    <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <form flex name="searchForm">
+                        <input type="text" 
+			       ng-model="ctrl.query.filter" 
+			       placeholder="输入主机名称搜索"
+			       ng-change="ctrl.search()"> 
+			</input>
+                    </form>
+                </div>
+            </md-toolbar>
+	    <md-content>
+		    <md-table-container> 
+			<div> 
+        		<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">
+            			<thead md-head md-order=""
+			      md-on-reorder="" fix-head>
+            			<tr md-row>
+                    			<th md-column><span>主机名</span></th>
+                    			<th md-column><span>地址</span></th>
+                    			<th md-column><span>状态</span></th>
+                    			<th md-column><span>负载</span></th>
+                    			<th md-column><span>内存</span></th>
+                    			<th md-column><span>CPU</span></th>
+					<th md-column><span>服务数量</span></th>
+					<th md-column><span>流量(今日|本月)</span></th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+            				<tr md-row md-select="node" md-select-id="name" md-auto-select data-ng-repeat="node in ctrl.nodes">
+                				<td md-cell>
+							<a href="#"
+                               				data-ui-sref="node.detail({node_id: node.node.id})">{/node.node.sysinfo.hostname/}
+							</a>
+						</td>
+                				<td md-cell>
+							{/node.node.remote_addr/}
+                				</td>
+                				<td md-cell>
+							{/node.node.status/}
+                				</td>
+                				<td md-cell>
+							{/node.node.sysinfo.loadavgs.one/}
+                				</td>
+                				<td md-cell>
+							{/node.node.sysinfo.memory.used/} / {/node.node.sysinfo.memory.total/}
+                				</td>
+                				<td md-cell>
+							{/node.node.sysinfo.cpu.used/}%({/node.node.sysinfo.cpu.processor/})
+                				</td>
+                				<td md-cell>
+							{/node.node.ss_services/}
+                				</td>
+						<td md-cell>
+							{/node.node.sysinfo.traffics.eth0.rx_bytes/}
+						</td>
+            				</tr>
+            			</tbody>
+        		</table>
+			</div>
+    		</md-table-container>
+		<div class="bottom">
+                    <div class="left" layout="row">
+		       <span>总节点数: {/ctrl.total/}</span>
+		    </div>
+                    <div class="right">
+		        <md-button class="pagination left"
+		        	   data-ng-disabled="ctrl.query.page==0"
+		        	   data-ng-click="ctrl.previous()">
+                                   <span>上一页</span>
+                        </md-button>
+		        <md-button class="pagination"
+		        	   data-ng-disabled="ctrl.nodes.length < ctrl.query.limit"
+		        	   data-ng-click="ctrl.next()">
+                                   <span>下一页</span>
+                        </md-button>
+                    </div>
+		</div>
+        </md-content>
+	</div>
+    </section>
+</div>

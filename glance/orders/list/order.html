@@ -1,0 +1,83 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+	<div class="main-content">
+	    <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <form flex name="searchForm">
+                        <input type="text"
+			       ng-model="ctrl.query.filter"
+	  		       placeholder="输入订单号搜索"
+                               ng-change="ctrl.search()">
+			</input>
+                    </form>
+                </div>
+            </md-toolbar>
+
+	    <md-content>
+		<md-table-container>
+		<div>
+        	<table md-table>
+            		<thead md-head md-order=""
+		      md-on-reorder="" fix-head>
+            		<tr md-row>
+                		<th md-column><span>订单号</span></th>
+                		<th md-column><span>收货人</span></th>
+                		<th md-column><span>手机</span></th>
+                		<th md-column><span>收货地址</span></th>
+                		<th md-column><span>支付状态</span></th>
+                		<th md-column><span>配送状态</span></th>
+                		<th md-column ng-if="ctrl.IsUndestributed()">操作</th>
+            		</tr>
+            		</thead>
+            		<tbody md-body>
+            			<tr md-row data-ng-repeat="order in ctrl.orders">
+                			<td md-cell>
+						<a href="#"
+                       				data-ui-sref="order.detail({order_id: order.id})">{/order.number/}
+						</a>
+					</td>
+                			<td md-cell>
+						{/order.name/}
+                			</td>
+                			<td md-cell>
+						{/order.mobile/}
+                			</td>
+                			<td md-cell>
+						{/order.region/} {/order.address/}
+                			</td>
+                			<td md-cell>
+						<span class="label ps-{/order.ps/}">{/ctrl.paymentStatus[order.ps]/}</span>
+                			</td>
+                			<td md-cell>
+						{/ctrl.orderStatus[order.status]/}
+                			</td>
+                			<td md-cell ng-if="ctrl.IsUndestributed()">
+					<md-button aria-label="strp" class="md-button md-raised"
+			                    data-ng-click="">立即配送
+                			</md-button>
+                			</td>
+            			</tr>
+            		</tbody>
+        	</table>
+		</div>
+	    	</md-table-container>
+		<div class="bottom">
+		    <div class="left" layout="row">
+		        <span>总订单数: {/ctrl.total/}</span>
+		    </div>
+                    <div class="right">
+		    <md-button class="pagination left"
+			   data-ng-disabled="ctrl.query.page==0"
+			   data-ng-click="ctrl.previous()">
+                           <span>上一页</span>
+                    </md-button>
+		    <md-button class="pagination"
+			   data-ng-disabled="ctrl.orders.length < ctrl.query.limit"
+			   data-ng-click="ctrl.next()">
+                           <span>下一页</span>
+                    </md-button>
+                </div>
+        </md-content>
+	</div>
+    </section>
+</div>

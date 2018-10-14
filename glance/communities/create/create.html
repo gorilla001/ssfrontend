@@ -1,0 +1,86 @@
+<div class="main-container">
+    <section class="main-section">
+        <div class="main-content">
+            <form name="staticForm">
+                <div layout="row" layout-align="start start" class="form-group form-group-input">
+                    <label flex="10">名称</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input" name="name"
+                                   aria-label="name"
+                                   data-ng-model="createCommunityCtrl.form.name"
+                                   data-required="required"
+                                   data-ng-pattern="/^\S*$/"
+				   data-ng-trim="true">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.name.$error.required && !staticForm.name.$pristine">
+                            <small>小区名称不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+		
+                <div layout="row" layout-align="end center" class="form-group form-group-input">
+                    <label flex="10">城市</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="master" aria-label="master"
+					       data-ng-model="createCommunityCtrl.form.city">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.name.$error.required && !staticForm.name.$pristine">
+                            <small>城市不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+
+                <div layout="row" layout-align="start center" class="form-group form-group-input">
+                    <label flex="10">区域</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="contact" aria-label="contact"
+                                   data-ng-model="createCommunityCtrl.form.district"
+                                   data-required="required">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.price.$error.required && !staticForm.price.$pristine">
+                            <small>区域不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+
+		<div layout="row" layout-align="start center" class="form-group form-group-input">
+                    <label flex="10">详细地址</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="community" aria-label="community"
+                                   data-ng-model="createCommunityCtrl.form.address"
+                                   data-required="required">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.size.$error.required && !staticForm.size.$pristine">
+                            <small>详细地址不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+                <div layout="row" class="form-footer-button" style="padding-top: 150px;">
+                    <div flex-offset="8">
+                        <md-button class="md-raised md-primary" data-ng-click="createCommunityCtrl.createCommunity()"
+                                   data-ng-disabled="staticForm.$invalid" aria-label="create"
+                                   >添 加
+                        </md-button>
+                        <md-button class="md-primary" data-ng-click="createCommunityCtrl.goBack()">取 消</md-button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</div>

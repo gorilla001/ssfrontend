@@ -1,0 +1,67 @@
+<!--<div class="main-content app-layout"> 
+    <section class="main-section">
+        <header layout="row" layout-align="end start">
+            <div layout-align="end center" class="operation">
+            </div>
+	</header>-->
+	<div class="main-content">
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <form flex name="searchForm">
+                        <input type="text" ng-model="ctrl.filter" placeholder="输入手机号码搜索"
+                               enter-press="ctrl.doSearch(ctrl.filter)">
+                    </form>
+                </div>
+            </md-toolbar>
+	    <md-content class="md-padding main-tab-content" data-ui-view></md-content>
+
+	    <md-content>
+		<md-table-container>
+        		<table md-table>
+            			<thead md-head md-order=""
+			      md-on-reorder="">
+            			<tr md-row>
+                    			<th md-column><span>订单号</span></th>
+                    			<th md-column><span>收货人</span></th>
+                    			<th md-column><span>手机</span></th>
+                    			<th md-column><span>收货地址</span></th>
+                    			<th md-column><span>支付状态</span></th>
+                    			<th md-column><span>配送状态</span></th>
+                    			<th md-column ng-if="ctrl.IsUndestributed()">操作</th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+					<tr md-row> 
+                				<td md-cell>
+							<a href="#"
+                               				data-ui-sref="order.detail({order_id: order.id})">{/ctrl.order.number/}
+							</a>
+						</td>
+                				<td md-cell>
+							{/ctrl.order.name/}
+                				</td>
+                				<td md-cell>
+							{/ctrl.order.mobile/}
+                				</td>
+                				<td md-cell>
+							{/order.order/} {/order.address/}
+                				</td>
+                				<td md-cell>
+							{/ctrl.paymentStatus[order.ps]/}
+                				</td>
+                				<td md-cell>
+							{/ctrl.orderStatus[order.status]/}
+                				</td>
+                				<td md-cell ng-if="ctrl.IsUndestributed()">
+						<md-button aria-label="strp" class="md-button md-raised"
+				                    data-ng-click="">立即配送
+                    				</md-button>
+                				</td>
+            				</tr>
+            			</tbody>
+        		</table>
+    		</md-table-container>
+        </md-content>
+	</div><!--
+    </section>
+</div>-->

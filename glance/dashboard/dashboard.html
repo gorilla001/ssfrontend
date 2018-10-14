@@ -1,0 +1,69 @@
+<div class="main-content app-layout" layout="column">
+    <section class="main-section">
+	<div class="main-content">
+            <div class="" layout="row"> 
+                <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
+                    <div class="item-bg" flex="50" layout="column" layout-align="center center">
+                        <p>节点</p>
+                        <div class="white-caret"></div>
+                    </div>
+                    <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
+                        <span>
+                            {/ctrl.nodes/} 
+                        </span>
+                    </div>
+                </div>
+                <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
+                    <div class="order-bg" flex="50" layout="column" layout-align="center center">
+                        <p>用户</p>
+                        <div class="white-caret"></div>
+                    </div>
+                    <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
+                        <span>
+                            {/ctrl.users/} 
+                        </span>
+                    </div>
+
+                </div>
+                <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
+                    <div class="user-bg" flex="50" layout="column" layout-align="center center">
+                        <p>流量</p>
+                        <div class="white-caret"></div>
+                    </div>
+                    <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
+                        <span>
+                            {/ctrl.traffics/} 
+                        </span>
+                    </div>
+
+                </div>
+		<div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
+                    <div class="sales-bg" flex="50" layout="column" layout-align="center center">
+                        <p>区域</p>
+                        <div class="white-caret"></div>
+                    </div>
+                    <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
+                        <span>
+                            {/ctrl.region/} 
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+	    <div class="panel" layout-padding layout-margin>
+                <div class="source-title" layout="row">
+                    <p>流量统计</p>
+		</div>
+		<canvas id="orderChart" height="100"></canvas>
+	    </div>
+	    <div class="panel" layout-padding layout-margin>
+                <div class="source-title" layout="row">
+                    <p>用户统计</p>
+		</div>
+		<canvas id="saleChart" height="100"></canvas>
+	    </div>
+        </div>
+	</div>
+    </section>
+</div>

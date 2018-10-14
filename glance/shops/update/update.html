@@ -1,0 +1,88 @@
+<div class="main-container">
+    <section class="main-section">
+        <div class="main-content">
+            <form name="staticForm">
+                <div layout="row" layout-align="start start" class="form-group form-group-input">
+                    <label flex="15">名称</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input" name="name"
+                                   aria-label="name"
+                                   data-ng-model="ctrl.form.name"
+                                   data-required="required"
+                                   data-ng-pattern="/^\S*$/"
+				   data-ng-trim="true">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.name.$error.required && !staticForm.name.$pristine">
+                            <small>商品名称不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+		
+                <div layout="row" layout-align="end center" class="form-group form-group-input">
+                    <label flex="15">店主</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="desc" aria-label="desc"
+					       data-ng-model="ctrl.form.master">
+                        </div>
+                    </div>
+                    <p class="error-info help-info-bottom"
+                          data-ng-show="staticForm.name.$error.required && !staticForm.name.$pristine">
+                          <small>店主名称不能为空</small>
+                    </p>
+                    <div flex></div>
+                </div>
+
+                <div layout="row" layout-align="end center" class="form-group form-group-input">
+                    <label flex="15">联系方式</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="contact" aria-label="contact"
+                                   data-ng-model="ctrl.form.contact"
+                                   data-required="required">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.origin.$error.required && !staticForm.origin.$pristine">
+                            <small>联系方式不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+
+		<div layout="row" layout-align="end center" class="form-group form-group-input">
+                    <label flex="15">所属小区</label>
+                    <div flex="50" layout="column">
+                        <div flex>
+                            <input type="text" class="form-input"
+                                   name="community" aria-label="community"
+                                   data-ng-model="ctrl.form.community"
+                                   data-required="required">
+                        </div>
+                        <p class="error-info help-info-bottom"
+                           data-ng-show="staticForm.origin.$error.required && !staticForm.origin.$pristine">
+                            <small>所属小区不能为空</small>
+                        </p>
+                    </div>
+                    <div flex></div>
+                </div>
+
+
+                <div layout="row" class="form-footer-button" style="padding-top: 100px;">
+                    <div flex-offset="8">
+                        <md-button class="md-raised md-primary" data-ng-click="ctrl.updateShop()"
+                                   data-ng-disabled="staticForm.$invalid" aria-label="update"
+                                   >更新
+                        </md-button>
+                        <md-button class="md-primary" data-ng-click="ctrl.goBack()">取 消</md-button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</div>

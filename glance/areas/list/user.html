@@ -1,0 +1,54 @@
+<!--<div class="main-content app-layout"> 
+    <section class="main-section">
+        <header layout="row" layout-align="end start">
+            <div layout-align="end center" class="operation">
+            </div>
+	</header>-->
+	<div class="main-content">
+	    <md-content>
+		<md-table-container>
+        		<table md-table>
+            			<thead md-head md-order=""
+			      md-on-reorder="">
+            			<tr md-row>
+                    			<th md-column><span>姓名</span></th>
+                    			<th md-column><span>手机号</span></th>
+                    			<th md-column><span>家庭住址</span></th>
+                    			<th md-column ng-if="ctrl.IsUndestributed()">操作</th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+            				<tr md-row data-ng-repeat="order in ctrl.orders">
+                				<td md-cell>
+							<a href="#"
+                               				data-ui-sref="order.detail({order_id: order.id})">{/order.number/}
+							</a>
+						</td>
+                				<td md-cell>
+							{/order.name/}
+                				</td>
+                				<td md-cell>
+							{/order.mobile/}
+                				</td>
+                				<td md-cell>
+							{/order.region/} {/order.address/}
+                				</td>
+                				<td md-cell>
+							{/ctrl.paymentStatus[order.ps]/}
+                				</td>
+                				<td md-cell>
+							{/ctrl.orderStatus[order.status]/}
+                				</td>
+                				<td md-cell ng-if="ctrl.IsUndestributed()">
+						<md-button aria-label="strp" class="md-button md-raised"
+				                    data-ng-click="">立即配送
+                    				</md-button>
+                				</td>
+            				</tr>
+            			</tbody>
+        		</table>
+    		</md-table-container>
+        </md-content>
+	</div><!--
+    </section>
+</div>-->

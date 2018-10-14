@@ -1,0 +1,88 @@
+<div class="main-content app-layout"> 
+    <section class="main-section">
+	<div class="main-content">
+		<section layout="row">
+		    <md-button class="md-add" data-ui-sref="shop.create"><span>接入</span></md-button>
+		    <md-button class="md-second" data-ng-click="ctrl.enableShop()">营业</md-button>
+		    <md-button class="md-second" data-ng-click="ctrl.disableShop()">停业</md-button>
+		    <md-button class="md-delete right" data-ng-click="ctrl.deleteShop()">撤销</md-button>
+		</section>
+	    <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <form flex name="searchForm">
+                        <input type="text" 
+			       ng-model="ctrl.query.filter" 
+			       placeholder="输入商铺名称搜索"
+			       ng-change="ctrl.search()"> 
+			</input>
+                    </form>
+                </div>
+            </md-toolbar>
+	    <md-content>
+		    <md-table-container> 
+			<div> 
+        		<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">
+            			<thead md-head md-order=""
+			      md-on-reorder="" fix-head>
+            			<tr md-row>
+                    			<th md-column><span>名称</span></th>
+                    			<th md-column><span>店主</span></th>
+                    			<th md-column><span>联系方式</span></th>
+                    			<th md-column><span>所属小区</span></th>
+                    			<th md-column><span>状态</span></th>
+					<th md-column><span>编辑</span></th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+            				<tr md-row md-select="shop" md-select-id="name" md-auto-select data-ng-repeat="shop in ctrl.shops">
+                				<td md-cell>
+							<a href="#"
+                               				data-ui-sref="shop.detail({shop_id: shop.id})">{/shop.name/}
+							</a>
+						</td>
+                				<td md-cell>
+							{/shop.master/}
+                				</td>
+                				<td md-cell>
+							{/shop.contact/}
+                				</td>
+                				<td md-cell>
+							{/shop.community/}
+                				</td>
+                				<td md-cell>
+							<span class="label {/shop.status/}">{/ctrl.stateMap[shop.status]/}</span>
+                				</td>
+						<td md-cell width="100px">
+						    <md-button class="edit-button md-button md-icon-button"
+		     					    aria-label="edit"
+							    data-ui-sref="shop.update({shop_id: shop.id})">
+							    <i class="fa fa-pencil" aria-hidden="true"></i>
+						    </md-button>
+						</td>
+						</td>
+            				</tr>
+            			</tbody>
+        		</table>
+			</div>
+    		</md-table-container>
+		<div class="bottom">
+                    <div class="left" layout="row">
+		       <span>总商家数: {/ctrl.total/}</span>
+		    </div>
+                    <div class="right">
+		        <md-button class="pagination left"
+		        	   data-ng-disabled="ctrl.query.page==0"
+		        	   data-ng-click="ctrl.previous()">
+                                   <span>上一页</span>
+                        </md-button>
+		        <md-button class="pagination"
+		        	   data-ng-disabled="ctrl.shops.length < ctrl.query.limit"
+		        	   data-ng-click="ctrl.next()">
+                                   <span>下一页</span>
+                        </md-button>
+                    </div>
+		</div>
+        </md-content>
+	</div>
+    </section>
+</div>

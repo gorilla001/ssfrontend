@@ -1,0 +1,69 @@
+<div class="main-container app-layout">
+    <section class="main-section">
+        <!--<header layout="row" layout-align="end start">
+	</header>-->
+	    <div class="main-content">
+            <md-content class="md-padding main-tab-content" ui-view>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">名称</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.name/} </label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">图片</label>
+		    <div flex="50" layout="row">
+			    <div data-ng-repeat="img in ctrl.item.images track by $index">
+				    <img enlarge-pic width="103px" height="103px"
+				    style="margin-right:14px" data-ng-src="{/img/}">
+			    </div>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">描述</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.desc/} </label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">价格</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.price/} </label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">规格</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.size/} </label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">销量</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.sales/} </label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">库存</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.stock/}</label>
+		    </div>
+	        </div>
+	        <div layout="row" layout-align="start start" class="form-group form-group-input">
+		    <label flex="15">产地</label>
+		    <div flex="50" layout="column">
+			    <label> {/ctrl.item.origin/}</label>
+		    </div>
+	        </div>
+		<div class="mask" close-Pic>  
+    		<div class="mask-box"></div>  
+    		     <div class="big-pic-wrap">  
+                         <img src="" alt="" class="bigPic" />  
+    		     </div>  
+                </div>  
+	    </div>
+
+             </md-content>
+	    </div>
+    </section>
+</div>

@@ -1,0 +1,71 @@
+<div class="main-content" id="dashboard" layout="row" layout-align="start start">
+    <div flex="50" layout="row" layout-align="start center" class="cluster-charts-panel">
+        <div flex="40">
+            <div class="charts-panel">
+                <piechart chart-used="clusterMonitors.masMetrics.cpuPercent" chart-total="100" radius="[57, 67]"
+                          use-color="#00BCD4" show-text="CPU占用" font-size="24" text-color="#596679"
+                          error-code="errorCode">
+                </piechart>
+            </div>
+            <div class="info-panel" data-ng-if="clusterMonitors.masMetrics.cpuPercent">
+                CPU 占用量<br>
+                <div class="cluster-piechart-num" ng-show="clusterMonitors.masMetrics.cpuTotal">
+                    <em>{/clusterMonitors.masMetrics.cpuShare.toFixed(2)/}</em>
+                    / {/clusterMonitors.masMetrics.cpuTotal/} 
+                </div>
+            </div>
+        </div>
+        <div flex="40">
+            <div class="charts-panel">
+                <piechart chart-used="clusterMonitors.masMetrics.memUsed" chart-total="clusterMonitors.masMetrics.memTotal"
+                          radius="[57, 67]"
+                          use-color="#00BCD4" show-text="内存占用" text-color="#596679" error-code="errorCode"
+                          font-size="24">
+                </piechart>
+            </div>
+            <div class="info-panel" data-ng-if="clusterMonitors.masMetrics.memUsed">
+                内存占用量<br>
+                <div class="cluster-piechart-num" ng-show="clusterMonitors.masMetrics.memTotal">
+                    <em>{/clusterMonitors.masMetrics.memUsed/}</em>
+                    / {/clusterMonitors.masMetrics.memTotal | currency: '' :0/} MB
+                </div>
+            </div>
+        </div>
+    </div>
+    <div flex="40">
+        <div class="fold-panel mCustomScrollbar" data-ng-class="{'dropShow':dropStatus}" data-mcs-theme="dark">
+            <div ng-repeat="appMetric in clusterMonitors.appMetrics | orderBy: 'appName'">
+                <dl layout="row" layout-align="start center" class="app-charts-panel layout-align-start-center layout-row">
+                    <dt class="app-header">{/appMetric.appName/}</dt>
+                    <dd flex="30">
+                        <div class="charts-panel">
+                            <piechart chart-used="appMetric.appCpuUsed" chart-total="appMetric.appCpuShare"
+                                      radius="[34, 40]"
+                                      use-color="#009688" show-text="CPU使用" font-size="16" text-color="#596679"
+                                      error-code="errorCode"
+                                      status="appMetric.status">
+                            </piechart>
+                        </div>
+                    </dd>
+                    <dd flex="30">
+                        <div class="charts-panel">
+                            <piechart chart-used="appMetric.appMemUsed" chart-total="appMetric.appMemShare"
+                                      radius="[34, 40]"
+                                      use-color="#009688" show-text="内存使用" font-size="16" text-color="#596679"
+                                      error-code="errorCode"
+                                      status="appMetric.status">
+                            </piechart>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="btn-folding-v" data-ng-if="clusterMonitors.appMetrics.length">
+            <a href="#" data-ng-click="dropShow()">
+                <i class="fa" data-ng-class="{'fa-chevron-down':!dropStatus, 'fa-chevron-up': dropStatus}">
+                </i>
+            </a>
+        </div>
+    </div>
+</div>
+

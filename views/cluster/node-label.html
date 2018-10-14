@@ -1,0 +1,13 @@
+<span data-ng-repeat="label in selectedLabels track by $index" class="tag selected" data-ng-click="tearLabel(label, afterCopy)" title="移除标签" style="margin-top:0; margin-bottom:6px;"
+data-demo-disable>
+    <div style="width: auto;">{/label.name/}</div>
+    <em class="line-left"></em>
+    <em class="line-right"></em>
+</span>
+
+<button type="button" class="btn btn-info btn-add-tag" data-toggle="modal" 
+  data-target="#addLabel2NodeModal" data-ng-disabled="afterCopy" 
+  data-ng-click="changeLabels(selectedLabels);" style="margin-bottom: 6px;" data-demo-disable
+  data-dm-permit-click="1" 
+  data-dm-role="node.cluster.group_role"
+  data-dm-permit-msg="FRONTEND_MSG.no_group_admin">+</button>

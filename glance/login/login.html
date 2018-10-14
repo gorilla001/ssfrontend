@@ -1,0 +1,75 @@
+<html>
+ <head></head>
+ <body>
+  <div class="login-container ng-scope">
+   <div class="login">
+    <div class="login-content">
+     <div class="header-container">
+      <div class="header"> 
+          <div class="title">菜丫后台管理系统</div>
+      </div>
+     </div>
+     <form form-autofill-fix="form-autofill-fix" name="staticForm"
+	     class="form-horizontal login-form ng-pristine ng-invalid ng-invalid-required" method="POST">
+      <div class="content">
+       <div ng-show="ctrl.showAlert"
+	    class="alert alert-warning alert-white rounded ng-binding">
+            <button type="button"
+		    aria-hidden="true"
+		    ng-click="ctrl.showAlert = false"
+		    class="close">&times;
+	    </button>
+            <span class="icon fa fa-warning"></span> 用户名或密码错误
+       </div>
+       <div style="padding-left: 23px" class="sandbox-message">
+       </div>
+       <!--<h3 ng-hide="sandbox" class="ng-hide">Please sign in</h3>-->
+       <div class="form-group">
+        <div class="col-sm-12">
+         <div class="input-group">
+          <span class="input-group-addon">
+	      <i class="fa fa-user"></i>
+	  </span>
+          <input id="login-email"
+	         type="text"
+		 placeholder="用户名"
+		 name="username"
+		 required="required"
+		 ng-model="ctrl.user.name"
+		 class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" />
+         </div>
+        </div>
+       </div>
+       <div class="form-group">
+        <div class="col-sm-12">
+         <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input id="login-password"
+	         type="password"
+		 placeholder="密码"
+		 name="password"
+		 required="required"
+		 ng-model="ctrl.user.password"
+		 class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" />
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="footer">
+       <div style="padding: 0px 35px; padding-bottom: 15px;">
+        <button id="sign-in"
+		type="submit"
+		ng-hide="submitted"
+  		data-ng-click="ctrl.login()"
+		class="btn btn-primary"
+		style="background: rgb(74, 163, 223);">
+		登 录
+	</button>
+       </div>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

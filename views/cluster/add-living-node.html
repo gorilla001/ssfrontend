@@ -1,0 +1,85 @@
+<section class="main-section">
+    <header layout="row" layout-align="end start">
+        <div class="info" flex>
+          <h2>添加主机</h2>
+          <dl>
+            <dd>数人云可以助您轻松接入遍布各地的计算资源，无论主机的操作系统和网络环境。</dd>
+          </dl>
+        </div>
+    </header>
+    <div class="main-content" layout="row" layout-align="start start">
+        <form flex name="staticForm" class="form-horizontal" role="form" data-ng-controller="addNodeFormCtrl">
+          <div layout="row" layout-align="start start" class="form-group form-group-input">
+            <label flex="15">主机名称</label>
+            <div flex="50" layout="column">
+              <div flex>
+                <input type="text" 
+                       class="form-input"
+                       name="name"
+                       data-ng-model="form.name"
+                       data-ng-disabled="afterCopy">
+              </div>
+            </div>
+          </div>
+
+          <div layout="row" layout-align="start center" class="form-group form-group-input form-group-addrow">
+            <label flex="15">主机标签</label>
+            <div flex="none">
+              <span class="server-tag" data-ng-repeat="label in selectedLabels">{/label.name/}</span>
+            </div>
+            <div flex="50">
+              <md-button class="md-button md-primary" data-ng-click="showAddNodeLabelModal($event)" data-ng-disabled="afterCopy">
+                  <i class="fa fa-plus" ></i> 点击编辑标签
+              </md-button>
+            </div>
+          </div>
+
+          <div layout="row" layout-align="start start" class="form-group form-group-input form-group-addrow">
+            <label flex="15">连接主机</label>
+            <div flex="50" class="install-code" data-ng-show="nodeInstallScript">
+              <dl>
+                <dt>
+                  <h4>1. 安装 Docker</h4>
+                  <p>主机已安装 Docker，请跳过。</p>
+                  <code id="install-docker-code"
+                        class="text-info">{/dockerScript/}
+                 </code>
+                </dt>
+                <dd>
+                  <md-button class="md-button md-primary copy" data-dm-copy="install-docker-code">
+                    <i class="fa fa-clone"></i> 点击复制代码
+                  </md-button>
+                </dd>
+              </dl>
+              <dl>
+              <dt>
+                  <h4>2. 安装 Agent</h4>
+                  <p>请登录目标主机，运行以下命令，本操作需要 sudo 权限。依据组件不同，可能需要 2~5G 磁盘空间。
+                     先加入集群的主机将作为集群的 master 安装主控组件，当集群中 master 数量足够之后加入集群的主机才作为计算节点。</p>
+                  <code id="code" data-ng-bind="nodeInstallScript" data-ng-show="afterCopy" class="text-info">
+                  </code>
+                </dt>
+                <dd>
+                  <md-button class="md-button md-primary copy" data-ng-click="clickToCopy()" data-dm-copy="code" data-demo-disable>
+                    <i class="fa fa-clone"></i> 点击生成命令并复制
+                  </md-button>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-8 col-md-offset-2">
+                  <div data-ng-class="{'connected-bar': isConected,'alert-process':!isConected}">
+                      {/msgstate/}
+                  </div>
+              </div>
+          </div>
+          <div layout="row" class="form-footer-button">
+            <div flex-offset="15">
+              <md-button class="md-raised md-primary" data-ng-click="addNode()">完成</md-button>
+              <md-button class="md-raised md-primary" data-ng-click="addNode(true)">完成并继续添加主机</md-button>
+            </div>
+          </div>
+        </form>
+      </div>
+</section>
