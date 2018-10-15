@@ -2,7 +2,7 @@
     <section class="main-section">
 	<div class="main-content">
 		<section layout="row">
-		    <md-button class="md-add" data-ui-sref="item.create"><span>添加</span></md-button>
+		    <md-button class="md-add" data-ui-sref="node.create"><span>添加</span></md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.disableItem()">下架</md-button>
 		    <md-button class="md-delete right" data-ng-click="ctrl.deleteItem()">删除</md-button>
@@ -27,12 +27,12 @@
             			<tr md-row>
                     			<th md-column><span>主机名</span></th>
                     			<th md-column><span>地址</span></th>
-                    			<th md-column><span>状态</span></th>
-                    			<th md-column><span>负载</span></th>
-                    			<th md-column><span>内存</span></th>
-                    			<th md-column><span>CPU</span></th>
+                    			<th md-column><span>负载(1分钟/5分钟/15分钟)</span></th>
+                    			<th md-column><span>内存(使用/总量)</span></th>
+                    			<th md-column><span>CPU(使用率/核数)</span></th>
 					<th md-column><span>服务数量</span></th>
 					<th md-column><span>流量(今日|本月)</span></th>
+                    			<th md-column><span>状态</span></th>
             			</tr>
             			</thead>
             			<tbody md-body>
@@ -46,23 +46,23 @@
 							{/node.node.remote_addr/}
                 				</td>
                 				<td md-cell>
-							{/node.node.status/}
+							{/node.node.sysinfo.loadavgs.one/}/{/node.node.sysinfo.loadavgs.five/}/{/node.node.sysinfo.loadavgs.fifteen/}
                 				</td>
                 				<td md-cell>
-							{/node.node.sysinfo.loadavgs.one/}
+							{/ctrl.niceBytes(node.node.sysinfo.memory.used)/} / {/ctrl.niceBytes(node.node.sysinfo.memory.total)/}
                 				</td>
                 				<td md-cell>
-							{/node.node.sysinfo.memory.used/} / {/node.node.sysinfo.memory.total/}
+							{/node.node.sysinfo.cpu.used/}% / {/node.node.sysinfo.cpu.processor/}
                 				</td>
                 				<td md-cell>
-							{/node.node.sysinfo.cpu.used/}%({/node.node.sysinfo.cpu.processor/})
-                				</td>
-                				<td md-cell>
-							{/node.node.ss_services/}
+							{/node.ss_services.length/}
                 				</td>
 						<td md-cell>
-							{/node.node.sysinfo.traffics.eth0.rx_bytes/}
+							{/ctrl.niceBytes(node.node.sysinfo.traffics.eth0.rx_bytes)/}
 						</td>
+                				<td md-cell>
+							<span class="label {/node.node.status/}">{/ctrl.stateMap[node.node.status]/}</span>
+                				</td>
             				</tr>
             			</tbody>
         		</table>

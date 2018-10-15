@@ -1,10 +1,10 @@
 (function () {
     'use strict';
-    angular.module('glance.item')
-        .controller('CreateItemCtrl', CreateItemCtrl);
+    angular.module('glance.node')
+        .controller('CreateNodeCtrl', CreateNodeCtrl);
 
     /* @ngInject */
-    function CreateItemCtrl(appservice, $state, $scope) {
+    function CreateNodeCtrl(appservice, $state, $scope) {
         var self = this;
 
 	self.form = {
@@ -42,5 +42,33 @@
 	self.goBack = function() {
 		$state.go('item.list', {reload: true});
 	};
+
+	self.selected = "aliyun";
+
+	self.select = function(x) {
+		self.selected = x;
+	};
+
+	self.providers = [{
+	    img: "img/aliyun.jpeg",
+	    title: 'aliyun',
+	    value: 'aliyun'
+	    },{
+	    img: "img/vultr.jpg",
+	    title: 'vultr',
+	    value: 'ln'
+	    },{
+	    img: "img/aws.jpg",
+	    title: 'aws',
+	    value: 'aws'
+	    },{
+	    img: "img/tencent.jpg",
+	    title: 'tencent',
+	    value: 'tencent'
+	    },{
+	    img: "img/qingcloud.jpg",
+	    title: 'qingcloud',
+	    value: 'qingcloud'
+	}];
     }
 })();

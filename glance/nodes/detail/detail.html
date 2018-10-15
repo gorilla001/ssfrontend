@@ -3,7 +3,7 @@
         <!--<header layout="row" layout-align="end start">
 	</header>-->
 	    <div class="main-content">
-            <md-content class="md-padding main-tab-content" ui-view>
+            <!--<md-content class="md-padding main-tab-content" ui-view>
 	        <div layout="row" layout-align="start start" class="form-group form-group-input">
 		    <label flex="15">名称</label>
 		    <div flex="50" layout="column">
@@ -63,7 +63,75 @@
                 </div>  
 	    </div>
 
-             </md-content>
+	    </md-content>-->
+		
+	     <md-content>
+	    <md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="基本信息">
+		<md-table-container layout="column">
+	        <span>ID: {/ctrl.node.node.id/}</span>	
+	        <span>status: {/ctrl.node.node.status/}</span>	
+		<span>version: {/ctrl.node.node.version/}</span>	
+		</md-table-container>
+		</md-tab>
+		<md-tab label="资源" dm-tab-sref="user.password"></md-tab>
+		<md-tab label="负载" dm-tab-sref="user.groups"></md-tab>
+		<md-tab label="流量统计">
+		    <ul>
+		        <li ng-repeat='(key, value) in ctrl.node.node.sysinfo.traffics' layout="column">
+			    <span>{/key/}</span>
+			    <span>接收:{/value.rx_bytes/}</span>
+			    <span>发送:{/value.tx_bytes/}</span>
+			    <span>接收速率:{/value.rx_rate/}</span>
+			    <span>发送速率:{/value.tx_rate/}</span>
+		        </li>
+		    </ul>
+		</md-tab>
+		<!--<md-tab label="服务列表" ui-sref="node.services({node_id: ctrl.node_id})">-->
+		<md-tab label="服务列表">
+		<md-table-container>
+			<div> 
+        		<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">
+            			<thead md-head md-order=""
+			      md-on-reorder="" fix-head>
+            			<tr md-row>
+                    			<th md-column><span>主机</span></th>
+                    			<th md-column><span>端口</span></th>
+                    			<th md-column><span>密码</span></th>
+                    			<th md-column><span>加密方式</span></th>
+                    			<th md-column><span>状态</span></th>
+                    			<th md-column><span>创建时间</span></th>
+            			</tr>
+            			</thead>
+            			<tbody md-body>
+            				<tr md-row md-select="service"
+						md-select-id="name" md-auto-select data-ng-repeat="service in ctrl.node.ss_services">
+                				<td md-cell>
+                               			    {/service.host/}
+						</td>
+                				<td md-cell>
+						    {/service.port/}
+                				</td>
+                				<td md-cell>
+						    {/service.password/}
+                				</td>
+                				<td md-cell>
+						    {/service.encrypt/}
+                				</td>
+                				<td md-cell>
+						    {/service.status/}
+                				</td>
+                				<td md-cell>
+						    {/service.created_at | date : 'yyyy-MM-dd HH:mm:ss'/}
+                				</td>
+            				</tr>
+            			</tbody>
+        		</table>
+			</div>
+    		</md-table-container>
+		</md-tab>
+	    </md-tabs>
+	     </md-content>
 	    </div>
     </section>
 </div>

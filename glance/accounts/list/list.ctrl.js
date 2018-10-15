@@ -32,10 +32,7 @@
 	self.getAccounts = function() {
 	    gHttp.Resource('account.list').get({params:self.query}).then(function(resp) {
 	    	self.accounts = resp.data;
-                console.log(resp);
-                console.log(resp.headers);
-                console.log(resp.headers["Total-Records"]);
-		self.total=resp.headers["Total-Records"];
+		self.total=resp.headers["total-records"];
 	    });
 	}
 

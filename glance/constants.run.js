@@ -15,6 +15,7 @@
             node: {
                 list: '/api/ss_nodes',
                 detail: '/api/ss_nodes/$node_id',
+		services: '/api/ss_nodes/$node_id/services',
 	    },
             account: {
                 list: '/api/ss_accounts',

@@ -13,6 +13,7 @@
             //updateItem: updateItem,
             //deleteItem: deleteItem,
             //getItem: getItem,
+	    listServices: listServices, 
         };
         function listNodes(params, loading) {
             return gHttp.Resource('node.list').get({params: params, "loading": loading});
@@ -33,6 +34,7 @@
         //function getItem(clusterId, appId, loading) {
         //    return gHttp.Resource('item.show', {cluster_id: clusterId, app_id: appId}).get({'loading': loading});
         //}
+	
 
     }
 })();

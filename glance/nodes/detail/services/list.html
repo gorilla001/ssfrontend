@@ -2,7 +2,7 @@
     <section class="main-section">
 	<div class="main-content">
 		<section layout="row">
-		    <md-button class="md-add" data-ui-sref="item.create"><span>添加</span></md-button>
+		    <md-button class="md-add" data-ui-sref="node.create"><span>添加</span></md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.disableItem()">下架</md-button>
 		    <md-button class="md-delete right" data-ng-click="ctrl.deleteItem()">删除</md-button>
@@ -12,7 +12,7 @@
                     <form flex name="searchForm">
                         <input type="text" 
 			       ng-model="ctrl.query.filter" 
-			       placeholder="输入套餐名称搜索"
+			       placeholder="输入服务名称搜索"
 			       ng-change="ctrl.search()"> 
 			</input>
                     </form>
@@ -25,35 +25,27 @@
             			<thead md-head md-order=""
 			      md-on-reorder="" fix-head>
             			<tr md-row>
-                    			<th md-column><span>名称</span></th>
-                    			<th md-column><span>月/元</span></th>
-                    			<th md-column><span>半年/元</span></th>
-                    			<th md-column><span>年/元</span></th>
-                    			<th md-column><span>两年/元</span></th>
-					<th md-column><span>状态</span></th>
+                    			<th md-column><span>主机</span></th>
+                    			<th md-column><span>端口</span></th>
+                    			<th md-column><span>状态</span></th>
+                    			<th md-column><span>创建时间</span></th>
             			</tr>
             			</thead>
             			<tbody md-body>
-            				<tr md-row md-select="plan" md-select-id="name" md-auto-select data-ng-repeat="plan in ctrl.plans">
+            				<tr md-row md-select="service" md-select-id="name" md-auto-select data-ng-repeat="service in ctrl.services">
                 				<td md-cell>
 							<a href="#"
-                               				data-ui-sref="plan.detail({plan_id: plan.id})">{/plan.name/}
+                               				data-ui-sref="node.detail({node_id: service.node_id})">{/service.host/}
 							</a>
 						</td>
                 				<td md-cell>
-							{/plan.fee_1months/}
+							{/service.port/}
                 				</td>
                 				<td md-cell>
-							{/plan.fee_6months/}
+							{/service.status/}
                 				</td>
                 				<td md-cell>
-							{/plan.fee_12months/}
-                				</td>
-                				<td md-cell>
-							{/plan.fee_24months/}
-                				</td>
-                				<td md-cell>
-							{/plan.enabled/}
+							{/service.created_at | date : 'yyyy-MM-dd HH:mm:ss'/}
                 				</td>
             				</tr>
             			</tbody>
@@ -62,7 +54,7 @@
     		</md-table-container>
 		<div class="bottom">
                     <div class="left" layout="row">
-		       <span>总套餐数: {/ctrl.total/}</span>
+		       <span>总服务数: {/ctrl.total/}</span>
 		    </div>
                     <div class="right">
 		        <md-button class="pagination left"
@@ -71,7 +63,7 @@
                                    <span>上一页</span>
                         </md-button>
 		        <md-button class="pagination"
-		        	   data-ng-disabled="ctrl.plans.length < ctrl.query.limit"
+		        	   data-ng-disabled="ctrl.nodes.length < ctrl.query.limit"
 		        	   data-ng-click="ctrl.next()">
                                    <span>下一页</span>
                         </md-button>

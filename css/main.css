@@ -116,3 +116,62 @@ body .main-container {
 .md-button {
 	border-radius:0px
 }
+
+span.label.online {
+    color: #000;
+    background-color: #00CC00;
+}
+
+span.label.offline {
+    color: #000;
+    background-color: #FF0000;
+}
+
+.my-radio {
+	    display: -webkit-box;
+	        display: -webkit-flex;
+		    display: flex-box;
+		        flex-direction: row;
+		}
+
+/*.overlay {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: red;
+}*/
+
+.provider {
+   position: relative;
+}
+
+.overlay {
+   position: absolute;
+   left: 90px;
+   top: -8px;
+}
+
+.overlay .fa {
+   color: green;
+   font-size: 18px;
+}
+
+.mark {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    opacity: 0.4;
+    background-color: #DDDDDD;
+    transition: .1s ease;
+}
+
+.mark:focus {
+    outline: 0;
+    outline: none;
+}

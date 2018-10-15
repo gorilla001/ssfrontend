@@ -3,7 +3,7 @@
         <div class="main-content">
             <form name="staticForm">
                 <div layout="row" layout-align="start start" class="form-group form-group-input">
-                    <label flex="10">名称</label>
+                    <!--<label flex="10">名称</label>
                     <div flex="50" layout="column">
                         <div flex>
                             <input type="text" class="form-input" name="name"
@@ -141,8 +141,15 @@
                          <img src="" alt="" class="bigPic" />  
     		     </div>  
                 </div>  
-	    </div>
-
-        </div>
-    </section>
+	</div>-->
+	<div layout="row" ng-repeat="p in ctrl.providers" class="provider">
+		<img src="{/ p.img /}" style="width:100px; height:100px; margin-right:20px;">
+		<div class="overlay">
+		    <a href="#" class="icon" title="User Profile">
+		    <i ng-show="ctrl.selected == p.value" class="fa fa-check-circle"></i> 
+		    </a>
+		 </div>
+		 <div class="mark" ng-click="ctrl.select(p.value)" ng-hide="ctrl.selected == p.value"></div>
+	
+	</div>
 </div>

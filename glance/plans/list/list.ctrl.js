@@ -32,10 +32,7 @@
 	self.getPlans = function() {
 	    gHttp.Resource('plan.list').get({params:self.query}).then(function(resp) {
 	    	self.plans = resp.data;
-                console.log(resp);
-                console.log(resp.headers);
-                console.log(resp.headers["Total-Records"]);
-		self.total=resp.headers["Total-Records"];
+		self.total=resp.headers["total-records"];
 	    });
 	}
 
@@ -46,9 +43,9 @@
        	       "disabled": "下架",
 	}	       
 
-	self.enableItem = function() {
+	self.enablePlan = function() {
             angular.forEach(self.selected, function (item) {
-		gHttp.Resource('item.enable', {item_id: item.id}).patch().then(function(data){
+		gHttp.Resource('plan.enable', {item_id: item.id}).patch().then(function(data){
 			$state.reload();
 		})
 	    })
@@ -56,14 +53,14 @@
 
 	self.disableItem = function() {
 	    angular.forEach(self.selected, function (item) {
-		gHttp.Resource('item.disable', {item_id: item.id}).patch().then(function(data){
+		gHttp.Resource('plan.disable', {item_id: item.id}).patch().then(function(data){
 			$state.reload();
 		})
 	    })
 	};
 
 	self.deleteItem = function() {
-	    confirmModal.open("确认删除选中的商品?").then(function () {
+	    confirmModal.open("确认删除选中的套餐?").then(function () {
 	           angular.forEach(self.selected, function (item) {
 		        gHttp.Resource('item.delete', {item_id: item.id}).delete().then(function(data) {
 		    	    $state.reload();

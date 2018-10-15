@@ -1,12 +1,12 @@
 (function () {
     'use strict';
     angular.module('glance.node')
-        .controller('ListNodeCtrl', ListNodeCtrl);
+        .controller('ListServicesCtrl', ListServicesCtrl);
 
     /* @ngInject */
-    function ListNodeCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope) {
+    function ListServicesCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope) {
         var self = this;
-	self.nodes = [];
+	self.services = [];
 	self.selected = [];
 	self.total = 0;
 	self.query = {
@@ -16,27 +16,27 @@
   	};
 
 	self.search = function() {
-	    self.getNodes();
+	    self.getServices();
 	}
 	
 	self.next = function() {
 	    self.query.page++;
-	    self.getNodes();
+	    self.getServices();
 	}
 
         self.previous = function() {
 	    self.query.page--;	
-	    self.getNodes();
+	    self.getServices();
 	}
 
-	self.getNodes = function() {
-	    gHttp.Resource('node.list').get({params:self.query}).then(function(resp) {
-	    	self.nodes = resp.data;
+	self.getServices = function() {
+	    gHttp.Resource('node.services', {node_id: $stateParams.node_id}).get({params:self.query}).then(function(resp) {
+	    	self.services = resp.data;
 		self.total=resp.headers["total-records"];
 	    });
 	}
 
-	self.getNodes();
+	self.getServices();
 
 	self.stateMap = {
 	       "online": "在线",

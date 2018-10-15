@@ -9,6 +9,8 @@
 
 	self.node = {};
 
+	self.node_id = $stateParams.node_id;
+
 	gHttp.Resource('node.detail', {node_id: $stateParams.node_id}).get().then(function(data) {
 		self.node = data.data;
 	});

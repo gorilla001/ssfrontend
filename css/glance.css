@@ -115,6 +115,7 @@ md-content.main-tab-content {
 
 md-table-container {
     padding: 0;
+    margin-top: 0px;
 }
 
 table.md-table td.md-cell {
@@ -303,4 +304,18 @@ table.md-table td.md-cell {
     min-height: 10px !important;
     min-width:10px !important;
     padding: 8px !important;
+}
+
+md-pagination-wrapper {
+   margin-left: 0px;
+   height: 50px;
+}
+md-tabs-canvas, md-content {
+    background: #fff;
+}
+md-tabs-canvas {
+    height: 50px;
+}
+md-tabs .md-tab {
+    line-height: 50px;
 }

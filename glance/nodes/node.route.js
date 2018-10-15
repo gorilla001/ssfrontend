@@ -17,15 +17,20 @@
                 controller: 'ListNodeCtrl as ctrl',
             })
             .state('node.detail', {
-	        url: '/nodes/:node_id',
+	        url: '/:node_id',
                 templateUrl: '/glance/nodes/detail/detail.html',
                 controller: 'DetailNodeCtrl as ctrl',
             })
-	    //.state('item.create', {
-            //    url: '/new',
-            //    templateUrl: '/glance/items/create/create.html',
-            //    controller: 'CreateItemCtrl as createItemCtrl',
-            //}) 
+	    .state('node.create', {
+                url: '/new',
+                templateUrl: '/glance/nodes/create/create.html',
+                controller: 'CreateNodeCtrl as ctrl',
+            }) 
+	    .state('node.services', {
+		url: '/:node_id/services',
+                templateUrl: '/glance/nodes/detail/services/list.html',
+                controller: 'ListServicesCtrl as ctrl',
+            }) 
 	    //.state('item.update', {
 	    //    url: '/list/:item_id/update',
             //    templateUrl: '/glance/items/update/update.html',
