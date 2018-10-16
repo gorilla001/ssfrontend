@@ -10,12 +10,14 @@
 		login: '/v1/login',	    	
 	    },
             summary: {
-	        get: '/v1/admin/summary',
+	        get: '/api/info',
 	    },
             node: {
                 list: '/api/ss_nodes',
                 detail: '/api/ss_nodes/$node_id',
 		services: '/api/ss_nodes/$node_id/services',
+		types: '/api/cloudsvrs/$cloud_name/types',
+		regions: '/api/cloudsvrs/$cloud_name/regions',
 	    },
             account: {
                 list: '/api/ss_accounts',

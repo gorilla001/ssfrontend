@@ -74,6 +74,13 @@ md-content.main-tab-content {
     position: relative;
 }
 
+.dashboard-panel .service-bg {
+    background-color: #0099FF;
+    margin: 0;
+    position: relative;
+}
+
+
 .dashboard-panel .order-bg {
     background-color: #ded65a;
     margin: 0;
@@ -251,11 +258,13 @@ md-icon{
 	display:flex;
 }
 
-.main-content{
-    /*overflow: hidden;*/
+.section .main-content {
+    /* overflow: hidden; */
     height: 100%;
     position: relative;
-    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 0px;
 }
 
 .enabled {
@@ -267,7 +276,7 @@ table.md-table td.md-cell span.label{
     padding-bottom: 2px;
     padding-left:5px;
     padding-right:5px;
-    border-radius: 3px;
+    border-radius: 0px;
 }
 
 table.md-table td.md-cell span.disabled{

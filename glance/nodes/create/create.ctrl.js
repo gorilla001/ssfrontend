@@ -4,7 +4,7 @@
         .controller('CreateNodeCtrl', CreateNodeCtrl);
 
     /* @ngInject */
-    function CreateNodeCtrl(appservice, $state, $scope) {
+    function CreateNodeCtrl(appservice, $state, $scope, gHttp) {
         var self = this;
 
 	self.form = {
@@ -43,11 +43,34 @@
 		$state.go('item.list', {reload: true});
 	};
 
-	self.selected = "aliyun";
+	self.selected_provider = "aliyun"
+
+	self.selected_type = "" 
+
+	self.selected_region = "";
+
+	self.types = [];
+	self.regions = [];
 
 	self.select = function(x) {
-		self.selected = x;
+	    self.selected_provider = x;
+	    gHttp.Resource('node.types', {cloud_name: x}).get().then(function(data) {
+	    	self.types = data.data;
+		    console.log(self.types);
+                self.selected_type = self.types[0].id;
+	    });
+	    gHttp.Resource('node.regions', {cloud_name: x}).get().then(function(data) {
+	    	self.regions = data.data;
+		    console.log(self.regions);
+		self.selected_region = self.regions[0].location;
+	    });
 	};
+        
+        self.select_region = function(x) {
+            self.selected_region = x;
+	}
+
+	self.select(self.selected_provider);   
 
 	self.providers = [{
 	    img: "img/aliyun.jpeg",
@@ -68,7 +91,7 @@
 	    },{
 	    img: "img/qingcloud.jpg",
 	    title: 'qingcloud',
-	    value: 'qingcloud'
+	    value: 'qc'
 	}];
     }
 })();

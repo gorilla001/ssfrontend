@@ -17,7 +17,7 @@
                 controller: 'ListNodeCtrl as ctrl',
             })
             .state('node.detail', {
-	        url: '/:node_id',
+	        url: '/:node_id/detail',
                 templateUrl: '/glance/nodes/detail/detail.html',
                 controller: 'DetailNodeCtrl as ctrl',
             })
