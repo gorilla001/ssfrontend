@@ -4,7 +4,7 @@
         .controller('CreateNodeCtrl', CreateNodeCtrl);
 
     /* @ngInject */
-    function CreateNodeCtrl(appservice, $state, $scope) {
+    function CreateNodeCtrl(appservice, $state, $scope, gHttp) {
         var self = this;
 
 	self.form = {
@@ -45,8 +45,37 @@
 
 	self.selected = "aliyun";
 
+	self.type = {
+	    "id": "512mb",
+            "name": "-",
+            "region_id": "-",
+            "cpu": "1",
+            "memory": "0.5GB",
+            "disk": "20GB"
+	}
+
+	self.selected_types = {
+	    "id": "512mb",
+            "name": "-",
+            "region_id": "-",
+            "cpu": "1",
+            "memory": "0.5GB",
+            "disk": "20GB"
+	};
+
+	self.selected_region = "华北 1";
+
+	self.types = [];
+	self.regions = [];
+
 	self.select = function(x) {
-		self.selected = x;
+	    self.selected = x;
+	    gHttp.Resource('node.types', {cloud_name: x}).get().then(function(data) {
+	    	self.types = data.data;
+	    });
+	    gHttp.Resource('node.regions', {cloud_name: x}).get().then(function(data) {
+	    	self.regions = data.data;
+	    });
 	};
 
 	self.providers = [{

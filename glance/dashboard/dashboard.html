@@ -1,7 +1,7 @@
 <div class="main-content app-layout" layout="column">
     <section class="main-section">
 	<div class="main-content">
-            <div class="" layout="row"> 
+            <!--<div layout="row"> 
                 <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
                     <div class="item-bg" flex="50" layout="column" layout-align="center center">
                         <p>节点</p>
@@ -9,10 +9,22 @@
                     </div>
                     <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
                         <span>
-                            {/ctrl.nodes/} 
+                            {/ctrl.num_ssnodes/} 
                         </span>
                     </div>
                 </div>
+	        <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
+                    <div class="service-bg" flex="50" layout="column" layout-align="center center">
+                        <p>服务</p>
+                        <div class="white-caret"></div>
+                    </div>
+                    <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
+                        <span>
+                            {/ctrl.num_services/} 
+                        </span>
+                    </div>
+                </div>
+
                 <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
                     <div class="order-bg" flex="50" layout="column" layout-align="center center">
                         <p>用户</p>
@@ -20,50 +32,72 @@
                     </div>
                     <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
                         <span>
-                            {/ctrl.users/} 
+                            {/ctrl.accounts/} 
                         </span>
                     </div>
 
                 </div>
                 <div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
                     <div class="user-bg" flex="50" layout="column" layout-align="center center">
-                        <p>流量</p>
+                        <p>续费</p>
                         <div class="white-caret"></div>
                     </div>
                     <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
                         <span>
-                            {/ctrl.traffics/} 
+                            {/ctrl.renewals/} 
                         </span>
                     </div>
-
                 </div>
 		<div class="panel dashboard-panel" layout-margin flex="25" layout-align="none stretch" layout="row">
                     <div class="sales-bg" flex="50" layout="column" layout-align="center center">
-                        <p>区域</p>
+                        <p>套餐</p>
                         <div class="white-caret"></div>
                     </div>
                     <div class="dashboard-panel-content" layout="column" layout-align="center center" flex>
                         <span>
-                            {/ctrl.region/} 
+                            {/ctrl.plans/} 
                         </span>
                     </div>
-
                 </div>
+	    </div>-->
+	    <div class="panel" layout-padding layout-margin>
+                <div class="source-title" layout="row">
+                    <p>基本信息</p>
+		</div>
+		<md-divider></md-divider>
+		<div layout="row" flex>
+		    <span flex="15">节点总数: {/ctrl.num_ssnodes == undefined ? '0' : ctrl.num_ssnodes/}</span>
+		    <span flex="15">服务总数: {/ctrl.num_services == undefined ? '0' : ctrl.num_services/}</span>
+		    <span flex="15">用户总数: {/ctrl.accounts == undefined ? '0' : ctrl.accounts/}</span>
+		    <span flex="15">续费总数: {/ctrl.renewals == undefined ? '0' : ctrl.renewals/}</span>
+		    <span flex="15">套餐总数: {/ctrl.plans == undefined ? '0' : ctrl.plans/}</span>
+		</div>
+	    </div>
 
-            </div>
+            <div class="panel" layout-padding layout-margin>
+                <div class="source-title" layout="row">
+                    <p>节点状态</p>
+		</div>
+		<md-divider></md-divider>
+		<div layout="row" flex>
+		    <span flex="15">部署中:{/ctrl.ssnodes.deploying == undefined ? '0' : ctrl.ssnodes.deploying /}</span>
+		    <span flex="15">在线: {/ctrl.ssnodes.online == undefined ? '0' : ctrl.ssnodes.online/}</span>
+		    <span flex="15">离线: {/ctrl.ssnodes.offline == undefined ? '0' : ctrl.ssnodes.offline/}</span>
+		    <span flex="15">抖动: {/ctrl.ssnodes.flagging == undefined ? '0' : ctrl.ssnodes.flagging/}</span>
+		    <span flex="15">删除中: {/ctrl.ssnodes.deleting == undefined ? '0' : ctrl.ssnodes.deleting/}</span>
+		</div>
+	    </div>
+
 	    <div class="panel" layout-padding layout-margin>
                 <div class="source-title" layout="row">
-                    <p>流量统计</p>
+                    <p>服务状态</p>
 		</div>
-		<canvas id="orderChart" height="100"></canvas>
-	    </div>
-	    <div class="panel" layout-padding layout-margin>
-                <div class="source-title" layout="row">
-                    <p>用户统计</p>
+		<md-divider></md-divider>
+		<div layout="row" flex>
+		    <span flex="30">健康: {/ctrl.services.health == undefined ? '0' : ctrl.services.health/}</span>
+		    <span flex="30">异常: {/ctrl.services.unhealth == undefined ? '0' : ctrl.services.unhealth/}</span>
+		    <span flex="30">未知: {/ctrl.services.unknown == undefined ? '0' : ctrl.services.unknown/}</span>
 		</div>
-		<canvas id="saleChart" height="100"></canvas>
-	    </div>
-        </div>
-	</div>
+		</div>
     </section>
 </div>

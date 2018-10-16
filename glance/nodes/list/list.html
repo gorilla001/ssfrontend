@@ -27,11 +27,11 @@
             			<tr md-row>
                     			<th md-column><span>主机名</span></th>
                     			<th md-column><span>地址</span></th>
-                    			<th md-column><span>负载(1分钟/5分钟/15分钟)</span></th>
-                    			<th md-column><span>内存(使用/总量)</span></th>
-                    			<th md-column><span>CPU(使用率/核数)</span></th>
-					<th md-column><span>服务数量</span></th>
-					<th md-column><span>流量(今日|本月)</span></th>
+                    			<th md-column><span>负载(5分钟)</span></th>
+                    			<th md-column><span>内存使用率</span></th>
+                    			<th md-column><span>CPU使用率</span></th>
+					<th md-column><span>服务数</span></th>
+					<th md-column><span>流量(今日)</span></th>
                     			<th md-column><span>状态</span></th>
             			</tr>
             			</thead>
@@ -46,13 +46,24 @@
 							{/node.node.remote_addr/}
                 				</td>
                 				<td md-cell>
-							{/node.node.sysinfo.loadavgs.one/}/{/node.node.sysinfo.loadavgs.five/}/{/node.node.sysinfo.loadavgs.fifteen/}
+							{/node.node.sysinfo.loadavgs.five/}
+                				</td>
+                				<!--<td md-cell>
+							{/ctrl.niceBytes(node.node.sysinfo.memory.used)} / {/ctrl.niceBytes(node.node.sysinfo.memory.total)/}
+						</td>-->
+                				<td md-cell>
+							<md-progress-linear 
+				   				md-mode="determinate" 
+								value="{/node.node.sysinfo.memory.used/node.node.sysinfo.memory.total*100 | number: 2/}">
+							</md-progress-linear>
+							{/ node.node.sysinfo.memory.used/node.node.sysinfo.memory.total*100 | number: 2/}%
                 				</td>
                 				<td md-cell>
-							{/ctrl.niceBytes(node.node.sysinfo.memory.used)/} / {/ctrl.niceBytes(node.node.sysinfo.memory.total)/}
-                				</td>
-                				<td md-cell>
-							{/node.node.sysinfo.cpu.used/}% / {/node.node.sysinfo.cpu.processor/}
+							<md-progress-linear 
+				   				md-mode="determinate" 
+	   							value="{/node.node.sysinfo.cpu.used/}">
+							</md-progress-linear>
+							{/node.node.sysinfo.cpu.used/}% 
                 				</td>
                 				<td md-cell>
 							{/node.ss_services.length/}

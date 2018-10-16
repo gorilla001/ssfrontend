@@ -2,79 +2,151 @@
     <section class="main-section">
         <!--<header layout="row" layout-align="end start">
 	</header>-->
-	    <div class="main-content">
-            <!--<md-content class="md-padding main-tab-content" ui-view>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">名称</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.name/} </label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">图片</label>
-		    <div flex="50" layout="row">
-			    <div data-ng-repeat="img in ctrl.item.images track by $index">
-				    <img enlarge-pic width="103px" height="103px"
-				    style="margin-right:14px" data-ng-src="{/img/}">
-			    </div>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">描述</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.desc/} </label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">价格</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.price/} </label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">规格</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.size/} </label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">销量</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.sales/} </label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">库存</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.stock/}</label>
-		    </div>
-	        </div>
-	        <div layout="row" layout-align="start start" class="form-group form-group-input">
-		    <label flex="15">产地</label>
-		    <div flex="50" layout="column">
-			    <label> {/ctrl.item.origin/}</label>
-		    </div>
-	        </div>
-		<div class="mask" close-Pic>  
-    		<div class="mask-box"></div>  
-    		     <div class="big-pic-wrap">  
-                         <img src="" alt="" class="bigPic" />  
-    		     </div>  
-                </div>  
-	    </div>
+	    <!--<div style="padding-left:50px;padding-top: 20px; padding-bottom:10px; padding-right:50px;background-color: #ecf2f6;">
+	    <md-content>
+	        <pre style="border:none;background:#fff;margin: 0 0 1px;">主机名: {/ctrl.node.node.sysinfo.hostname/}</pre>	
+	        <pre style="border:none;background:#fff;margin: 0 0 1px;">IP: {/ctrl.node.node.remote_addr/}</pre>	
+	        <pre style="border:none;background:#fff;margin: 0 0 1px;">状态: {/ctrl.node.node.status/}</pre>	
+	    </md-content>
+	    </div>-->
 
-	    </md-content>-->
-		
-	     <md-content>
-	    <md-tabs md-dynamic-height md-border-bottom>
-		<md-tab label="基本信息">
-		<md-table-container layout="column">
-	        <span>ID: {/ctrl.node.node.id/}</span>	
+	    <div class="main-content" style="padding-top:15px;">
+		<md-content style="" layout="row">
+		    <div layout="column" flex="50">
+	            <pre style="border:none;background:#fff;margin: 0 0 1px;">主机名: {/ctrl.node.node.sysinfo.hostname/}</pre>	
+	            <pre style="border:none;background:#fff;margin: 0 0 1px;">IP: {/ctrl.node.node.remote_addr/}</pre>	
+	            <pre style="border:none;background:#fff;margin: 0 0 1px;">状态: {/ctrl.node.node.status/}</pre>	
+		    </div>
+		    <div layout="column">
+		    <pre style="border:none;background:#fff;margin: 0 0 1px;">CPU使用率: {/ctrl.node.node.sysinfo.cpu.used/}%</pre>	
+		    <pre style="border:none;background:#fff;margin: 0 0 1px;">内存: {/ctrl.niceBytes(ctrl.node.node.sysinfo.memory.total)/} 已使用: {/ctrl.niceBytes(ctrl.node.node.sysinfo.memory.used)/}</pre>	
+		    <pre style="border:none;background:#fff;margin: 0 0 1px;">负载: {/ctrl.node.node.sysinfo.loadavgs.one/} {/ctrl.node.node.sysinfo.loadavgs.five/} {/ctrl.node.node.sysinfo.loadavgs.fifteen/}</pre>	
+		    </div>
+	        </md-content>
+	        <md-divider style="height:5px;border:none"></md-divider>
+
+	    	<md-tabs md-dynamic-height md-border-bottom style="">
+		<md-tab label="详细信息">
+	        <!--<span>ID: {/ctrl.node.node.id/}</span>	
 	        <span>status: {/ctrl.node.node.status/}</span>	
-		<span>version: {/ctrl.node.node.version/}</span>	
-		</md-table-container>
+		<span>version: {/ctrl.node.node.version/}</span>-->	
+		<md-content>
+		<pre style="border:none;background:#fff">{/ctrl.nodeString/}</pre>
+		</md-content>
 		</md-tab>
-		<md-tab label="资源" dm-tab-sref="user.password"></md-tab>
+		<md-tab label="资源">
+		    <md-content>
+		    <div class="panel" layout-padding layout-margin>
+                        <div class="source-title" layout="row">
+                            <p>内存</p>
+		        </div>
+			<md-progress-linear flex="80" 
+			    md-mode="determinate" 
+			    value="{/ctrl.node.node.sysinfo.memory.used/ctrl.node.node.sysinfo.memory.total*100 | number: 2/}">
+			</md-progress-linear>
+		        <div layout="row" flex>
+		            <span flex="15">总量:{/ctrl.niceBytes(ctrl.node.node.sysinfo.memory.total)/}</span>
+		            <span flex="15">使用: {/ctrl.niceBytes(ctrl.node.node.sysinfo.memory.used)/}</span>
+		            <span flex="15">缓存: {/ctrl.niceBytes(ctrl.node.node.sysinfo.memory.cached)/}</span>
+			    <span flex="15">使用率: {/ctrl.node.node.sysinfo.memory.used/ctrl.node.node.sysinfo.memory.total*100 | number: 2/}%</span>
+		        </div>
+	            </div>
+		    <md-divider></md-divider>
+		    <div class="panel" layout-padding layout-margin>
+                        <div class="source-title" layout="row">
+                            <p>CPU</p>
+		        </div>
+			<!--<md-divider></md-divider>-->
+			<div layout="row">
+			<md-progress-linear flex="80"
+			    md-mode="determinate" 
+       			    value="{/ctrl.node.node.sysinfo.cpu.used/}">
+			</md-progress-linear>
+			</div>
+		        <div layout="row" flex>
+		            <span flex="15">物理核数:{/ctrl.node.node.sysinfo.cpu.physical/}</span>
+		            <span flex="15">虚拟核数:{/ctrl.node.node.sysinfo.cpu.processor/}</span>
+			    <span flex="15">使用率: {/ctrl.node.node.sysinfo.cpu.used/}%</span>
+		        </div>
+	            </div>
+		    <div ng-repeat="(name,disk) in ctrl.node.node.sysinfo.disks">
+		        <md-divider></md-divider>
+			<div class="panel" layout-padding layout-margin>
+                        <div class="source-title" layout="row">
+				<p>磁盘 - {/name/}</p>
+		        </div>
+			<div layout="row">
+			<md-progress-linear flex="80"
+			    md-mode="determinate" 
+			    value="{/ctrl.node.node.sysinfo.memory.used/ctrl.node.node.sysinfo.memory.total*100 | number: 2/}">
+			</md-progress-linear>
+			</div>
+		        <div layout="column" flex>
+			    <div layout="row">
+		                <span flex="15">设备名: {/disk.dev_name/}</span>
+			    </div>
+			    <div layout="row" style="margin-top:5px;">
+		                <span flex="50">挂载点: {/disk.mount_at/}</span>
+			    </div>
+			    <div layout="row" style="margin-top:5px;">
+			        <span flex="10">容量: {/ctrl.niceBytes(disk.total)/}</span>
+			        <span flex="10">使用: {/ctrl.niceBytes(disk.used)/}</span>
+			        <span flex="10">剩余: {/ctrl.niceBytes(disk.free)/}</span>
+			        <span flex="15">Inode总量: {/disk.inode/}</span>
+			        <span flex="15">Inode剩余: {/disk.ifree/}</span>
+			    </div>
+		        </div>
+	            </div>
+		    <div ng-repeat="(name,traffic) in ctrl.node.node.sysinfo.traffics">
+		        <md-divider></md-divider>
+			<div class="panel" layout-padding layout-margin>
+                        <div class="source-title" layout="row">
+				<p>网卡 - {/name/}</p>
+		        </div>
+			<!--<div layout="row">
+			<md-progress-linear flex="80"
+			    md-mode="determinate" 
+			    value="{/ctrl.node.node.sysinfo.memory.used/ctrl.node.node.sysinfo.memory.total*100 | number: 2/}">
+			</md-progress-linear>
+			</div>-->
+		        <div layout="column" flex>
+			    <div layout="row">
+		                <span flex="15">设备名: {/traffic.name/}</span>
+			    </div>
+			    <div layout="row" style="margin-top:5px;">
+		                <span flex="50">mac地址: {/traffic.mac/}</span>
+			    </div>
+			    <div layout="row" style="margin-top:5px;">
+			        <span flex="10">接收: {/ctrl.niceBytes(traffic.rx_bytes)/}</span>
+			        <span flex="10">发送: {/ctrl.niceBytes(traffic.tx_bytes)/}</span>
+			        <span flex="15">接收速率: {/ctrl.niceBytes(traffic.rx_rate)/}</span>
+			        <span flex="15">发送速率: {/ctrl.niceBytes(traffic.tx_rate)/}</span>
+			    </div>
+		        </div>
+	            </div>
+
+		    </div>
+
+		    </md-content>
+		</md-tab>
+		<!--<md-tab label="资源">
+		   <p style="font-weight: 500; margin:5px;line-height:10px;">磁盘</p>
+		   <md-divider></md-divider>
+                    <div layout="row" margin-top: 20px;>
+		        <div style="height:150px;width:150px;">
+		            <canvas id="diskChart"></canvas>
+		        </div>
+		    </div>
+		    <div style="height:10px; background: #ecf2f6"></div> 
+		   <p style="font-weight: 500; margin:5px;line-height:10px;">内存</p>
+		   <md-divider></md-divider>
+                    <div layout="row" margin-top: 20px;>
+		        <div style="height:150px;width:150px;">
+		            <canvas id="memChart"></canvas>
+		        </div>
+		    </div>
+		    <div style="height:10px; background: #ecf2f6"></div> 
+		</md-tab>
 		<md-tab label="负载" dm-tab-sref="user.groups"></md-tab>
 		<md-tab label="流量统计">
 		    <ul>
@@ -86,7 +158,7 @@
 			    <span>发送速率:{/value.tx_rate/}</span>
 		        </li>
 		    </ul>
-		</md-tab>
+		</md-tab>-->
 		<!--<md-tab label="服务列表" ui-sref="node.services({node_id: ctrl.node_id})">-->
 		<md-tab label="服务列表">
 		<md-table-container>
