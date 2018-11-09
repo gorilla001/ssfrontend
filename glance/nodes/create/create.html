@@ -2,29 +2,47 @@
     <section class="main-section">
         <div class="main-content">
             <form name="staticForm">
+                <div layout="row">
+			<div layout="column" flex="80">
 		<label style="margin-bottom: 20px"> 云服务商</label>
 	        <div layout="row" layout-align="end center">
 	            <div layout="column" ng-repeat="p in ctrl.providers" class="provider">
-	            	<img src="{/ p.img /}" style="width:100px; height:100px;margin-right:20px">
+	            	<img src="{/ p.img /}" style="width:100px; height:100px;margin-right:20px" ng-click="ctrl.select(p.value)">
 	            	<div class="overlay">
 	            	    <a href="#" class="icon" title="User Profile">
-	            	    <i ng-show="ctrl.selected == p.value" class="fa fa-check-circle"></i> 
+	            	    <i ng-show="ctrl.selected_provider == p.value" class="fa fa-check-circle"></i> 
 	            	    </a>
 	            	 </div>
-	            	 <div class="mark" ng-click="ctrl.select(p.value)" ng-hide="ctrl.selected == p.value"></div>
+			 <!--<div class="mark" ng-click="ctrl.select(p.value)" ng-hide="ctrl.selected == p.value"></div>-->
 	            </div>
                     <div flex></div>
 	        </div>
 		<label style="margin-bottom: 10px; margin-top:40px"> 区域</label>
+		<!--<md-select ng-model="ctrl.selected_region" style="min-width: 200px;">
+		    <md-option ng-repeat="region in ctrl.regions" ng-value="region.id">{/region.location/}
+                    </md-option>
+		</md-select>-->
+
 	        <div layout="row" style="margin-top: 10px" layout-wrap>
-		    <div ng-repeat="l in ctrl.regions">
-			<div style="width:150px; height:40px;background:#fff;margin-right:5px; margin-bottom: 5px;">
-				<span class="location">{/l.location/}<span>
+		    <div ng-repeat="l in ctrl.regions" class="selected_region">
+			<div class="region" ng-click="ctrl.select_region(l.location)">
+			    <span class="location">{/l.location/}<span>
 			</div>
+		        <div class="overlay">
+	                    <a href="#" class="icon">
+	                    <i ng-show="ctrl.selected_region == l.location" class="fa fa-check-circle"></i> 
+	                    </a>
+	                </div>
+	            	<div class="mark" ng-click="ctrl.select_type(l.value)" ng-hide="ctrl.selected == p.value"></div>
 		    </div>
 		</div>
 		<label style="margin-bottom: 10px; margin-top:40px"> 机器规格</label>
-	        <div layout="row" style="margin-top: 10px" layout-wrap>
+		<md-select ng-model="ctrl.from.instance_type" style="min-width: 200px;">
+			<!--<md-option ng-repeat="type in ctrl.types" ng-value="type.id">cpu: {/type.cpu/} mem: {/type.memory/} disk: {/type.disk/}-->
+			<md-option ng-repeat="type in ctrl.types" ng-value="type">{/type.id/}
+                    </md-option>
+                </md-select>
+	        <!--<div layout="row" style="margin-top: 10px" layout-wrap>
 		    <div ng-repeat="t in ctrl.types">
 			<div style="width:120px; height:80px;background:#fff;margin-right:5px; margin-bottom: 5px;">
 				<span class="size">cpu: {/t.cpu/}</span>
@@ -33,18 +51,33 @@
 			</div>
 		    </div>
 		    <div flex></div>
-	        </div>
+		</div>-->
+			</div>
+			<md-divider style="margin-left: 10px; margin-right: 10px;"></md-divider>
+			<div layout="column" flex="20">
+				<pre style="border:none;background:#ecf2f6;">服务商:{/ctrl.selected_provider/} </pre>
+				<pre style="border:none;background:#ecf2f6">区域: {/ctrl.selected_region/}</pre>
+				<pre style="border:none;background:#ecf2f6">规格: {/ctrl.selected_type.id/}</pre>
+				<pre style="border:none;background:#ecf2f6">CPU: {/ctrl.selected_type.cpu/}核</pre>
+				<pre style="border:none;background:#ecf2f6">内存: {/ctrl.selected_type.memory/}</pre>
+				<pre style="border:none;background:#ecf2f6">磁盘: {/ctrl.selected_type.disk/}</pre>
+            		        <md-button class="md-createlong" data-ng-click="createItemCtrl.createItem()"
+            		        data-ng-disabled="staticForm.$invalid" aria-label="create">添 加
+            		        </md-button>
+			</div>
+
+		</div>
+		
 	    </form>
 	</div>
     </section>
-    <div layout="row" right layout-align="end center">
-                    <div right>
-                        <md-button class="md-raised md-primary" data-ng-click="createItemCtrl.createItem()"
-                                   data-ng-disabled="staticForm.$invalid" aria-label="create"
-                                   >添 加
-                        </md-button>
-                        <md-button class="md-raised md-warn" data-ng-click="createItemCtrl.goBack()">取 消</md-button>
-                    </div>
-                </div>
-
+    <!--<div layout="row" right layout-align="end center">
+        <div right>
+            <md-button class="md-cancel md-warn" data-ng-click="createItemCtrl.goBack()">取 消</md-button>
+            <md-button class="md-create md-primary" data-ng-click="createItemCtrl.createItem()"
+                       data-ng-disabled="staticForm.$invalid" aria-label="create"
+                       >添 加
+            </md-button>
+        </div>
+    </div>-->
 </div>

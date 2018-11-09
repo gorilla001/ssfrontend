@@ -1,0 +1,43 @@
+<div class="main-container"> 
+    <section class="main-section">
+        <div class="main-content">
+            <form name="staticForm">
+		<div layout="column">
+		    <!-- provider -->
+		    <label style="margin-bottom: 20px"> 云服务商</label>
+	            <div layout="row" layout-align="end center">
+	                <div layout="column" ng-repeat="p in ctrl.providers" class="provider">
+	                	<img src="{/ p.img /}" style="width:100px; height:100px;margin-right:20px" ng-click="ctrl.select(p.value)">
+	                	<div class="overlay">
+	                	    <a href="#" class="icon">
+	                	    <i ng-show="ctrl.selected_provider == p.value" class="fa fa-check-circle"></i> 
+	                	    </a>
+	                	 </div>
+	                </div>
+                        <div flex></div>
+	            </div>
+		    <!-- region -->
+		    <label style="margin-bottom: 10px; margin-top:40px"> 区域</label>
+		    <md-select ng-model="ctrl.form.region_or_zone" style="min-width: 200px;">
+		        <md-option ng-repeat="region in ctrl.regions" ng-value="region.id">{/region.location/}
+                        </md-option>
+		    </md-select>
+		    <!-- type -->
+		    <label style="margin-bottom: 10px; margin-top:40px"> 机器规格</label>
+		    <md-select ng-model="ctrl.form.instance_type" style="min-width: 200px;">
+                        <md-option ng-repeat="type in ctrl.types" ng-value="type.id">cpu: {/type.cpu/} 内存: {/type.memory/} 磁盘: {/type.disk/}
+                        </md-option>
+                    </md-select>
+    		    <div layout="row" right layout-align="end center">
+			<div right>
+                            <md-button class="md-cancel" data-ng-click="ctrl.cancel()">取 消</md-button>
+                            <md-button class="md-create" data-ng-click="ctrl.create()"
+                                       data-ng-disabled="staticForm.$invalid" aria-label="create"
+                                       >添 加
+                            </md-button>
+                    	</div>
+		    </div>
+	        </div>
+	    </form>
+	</div>
+    </section>

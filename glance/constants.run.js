@@ -18,6 +18,8 @@
 		services: '/api/ss_nodes/$node_id/services',
 		types: '/api/cloudsvrs/$cloud_name/types',
 		regions: '/api/cloudsvrs/$cloud_name/regions',
+		create: '/api/nodes?cloudsvr_id=$provider_id&hostname=$hostname',
+		delete: '/api/nodes/$node_id',
 	    },
             account: {
                 list: '/api/ss_accounts',

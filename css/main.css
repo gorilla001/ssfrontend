@@ -117,13 +117,24 @@ body .main-container {
 }
 
 span.label.online {
-    color: #000;
+    color: #fff;
     background-color: #00FF66;
 }
 
 span.label.offline {
-    color: #000;
+    color: #fff;
     background-color: #00FFFF;
+}
+
+
+span.label.deploying {
+    color: #fff;
+    background-color: #3300FF;
+}
+
+span.label.deleting {
+    color: #000;
+    background-color: #FF0099;
 }
 
 .my-radio {
@@ -170,6 +181,40 @@ span.label.offline {
     transition: .1s ease;
 }
 
+img:focus{
+    outline: 0;
+    outline: none;
+}
+
+
+.selected_region{
+	position: relative;
+}
+
+.selected_region .overlay {
+    position: absolute;
+    left: 135px;
+    top: -8px;
+}
+
+.region {
+    width:150px;
+    height:40px;
+    background:#eee;
+    margin-right:5px;
+    margin-bottom: 5px; 
+}
+
+.region:focus{
+    outline: 0;
+    outline: none;
+}
+
+.selected:focus{
+    outline: 0;
+    outline: none;
+}
+
 .mark:focus {
     outline: 0;
     outline: none;
@@ -203,4 +248,32 @@ md-progress-linear.md-default-theme .md-bar, md-progress-linear .md-bar {
 
 md-process-linear {
     
+}
+
+.md-select-value .md-select-icon {
+    display: block;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    text-align: end;
+    width: 24px;
+    margin: 0 4px;
+    -webkit-transform: translate3d(0, 1px, 0);
+    transform: translate3d(0, 1px, 0);
+}
+
+.md-select-value .md-select-icon:after {
+    display: block;
+    content: '';
+    position: relative;
+    top: 2px;
+    speak: none;
+    -webkit-transform: scaleY(0.6) scaleX(1);
+    transform: scaleY(0.6) scaleX(1);
+}
+
+.md-select-value .md-text {
+    display: inline;
+    font-size: 15px;
+    font-weight: 500;
 }

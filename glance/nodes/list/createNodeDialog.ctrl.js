@@ -1,12 +1,30 @@
 (function () {
     'use strict';
     angular.module('glance.node')
-        .controller('CreateNodeCtrl', CreateNodeCtrl);
+        .controller('CreateDialogCtrl', CreateDialogCtrl);
 
-    /* @ngInject */
-    function CreateNodeCtrl(appservice, $state, $scope, gHttp) {
+    function CreateDialogCtrl($scope, $mdDialog, gHttp, $timeout) {
         var self = this;
+	this.form = {
+		"region_or_zone": "",
+		"instance_type": "",
+	};
 
+	self.cancel = function() {
+		$mdDialog.cancel();
+	};
+
+	self.create = function() {
+	        gHttp.Resource('node.create',{provider_id: self.selected_provider})
+		.post(self.form, {form: $scope.staticForm} ).then(function(data) {
+		    self.cancel();
+		    //$state.go('node.list', {reload: true});
+		});
+
+		//$timeout(function () {
+		//	$state.reload();
+	    	//}, 300);
+	};
 	self.selected_provider = "ln"
 
 	self.selected_type = {} 
@@ -104,4 +122,6 @@
 	    value: 'qc'
 	}];
     }
+
 })();
+ 

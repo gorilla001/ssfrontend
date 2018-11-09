@@ -1,0 +1,22 @@
+
+<div style="background:#fff">
+	<form name="staticForm">
+		<div> 
+			<div layout="column">
+				<!-- provider -->
+				<label style="margin-bottom: 20px"> 云服务商</label>
+				<div layout="row" layout-align="end center">
+					<div layout="column" ng-repeat="p in ctrl.providers" class="provider">
+						<img src="{/ p.img /}" style="width:100px; height:100px;margin-right:20px" ng-click="ctrl.select(p.value)">
+						<div class="overlay">
+							<a href="#" class="icon">
+								<i ng-show="ctrl.selected_provider == p.value" class="fa fa-check-circle"></i> 
+							</a>
+						</div>
+					</div>
+					<div flex></div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

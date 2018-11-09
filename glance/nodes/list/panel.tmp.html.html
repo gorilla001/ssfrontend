@@ -1,0 +1,55 @@
+<div class="demo-md-panel-animation md-padding paneldemoPanelAnimations" ng-controller="ListNodeCtrl as ctrl" ng-app="MyApp" style="background:#fff;height:100%">
+  <h2>Animations</h2>
+  <div layout="row">
+    <div flex="33">
+      OpenFrom:
+      <md-radio-group ng-model="ctrl.openFrom">
+        <md-radio-button value="right">Right</md-radio-button>
+      </md-radio-group>
+    </div>
+
+    <div flex="33">
+      CloseTo:
+      <md-radio-group ng-model="ctrl.closeTo">
+        <md-radio-button value="right">Right</md-radio-button>
+      </md-radio-group>
+    </div>
+
+    <div flex="33">
+      AnimationType:
+      <md-radio-group ng-model="ctrl.animationType">
+        <md-radio-button value="slide">Slide</md-radio-button>
+        <md-radio-button value="custom">Custom</md-radio-button>
+      </md-radio-group>
+    </div>
+  </div>
+
+  <div class="demo-md-panel-content">
+    <md-button class="animation-target md-primary md-raised" ng-click="ctrl.showDialog($event)">
+      Dialog
+    </md-button>
+  </div>
+<script type="text/ng-template" id="panel.tmpl.html"><div role="dialog" aria-label="Eat me!" layout="column" layout-align="center center">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Surprise!</h2>
+    </div>
+  </md-toolbar>
+
+  <div class="demo-dialog-content">
+    <p>
+      You hit the secret button. Here's a donut:
+    </p>
+
+    <div layout="row" >
+      <img flex alt="Delicious donut" src="img/donut.jpg">
+    </div>
+  </div>
+
+  <div layout="row" class="demo-dialog-button">
+    <md-button md-autofocus flex class="md-primary" ng-click="ctrl.closeDialog()">
+      Close
+    </md-button>
+  </div>
+</div>
+</script></div>

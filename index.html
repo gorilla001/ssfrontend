@@ -55,7 +55,11 @@
 		        <i class="fa fa-cubes" aria-hidden="true"></i>节点管理
                     </md-button>
                 </li>
-
+		<li title="服务管理" data-ui-sref-active="active">
+                    <md-button data-ui-sref="service" data-ui-sref-opts="{inherit: false}">
+		        <i class="fa fa-cubes" aria-hidden="true"></i>服务管理
+                    </md-button>
+                </li>
                 <li title="套餐管理" data-ui-sref-active="active">
                     <md-button data-ui-sref="plan" data-ui-sref-opts="{inherit: false}">
 			<i class="fa fa-tasks" aria-hidden="true"></i>套餐管理
@@ -185,8 +189,15 @@
 <!--<script src="glance/nodes/update/update.ctrl.js" type="text/javascript"></script>-->
 <script src="glance/nodes/create/directive.js" type="text/javascript"></script>
 <script src="glance/nodes/list/list.ctrl.js" type="text/javascript"></script>
+<script src="glance/nodes/list/createNodeDialog.ctrl.js" type="text/javascript"></script>
 <script src="glance/nodes/detail/detail.ctrl.js" type="text/javascript"></script>
 <script src="glance/nodes/detail/services/list.ctrl.js" type="text/javascript"></script>
+
+
+<script src="glance/services/service.module.js" type="text/javascript"></script>
+<script src="glance/services/service.config.js" type="text/javascript"></script>
+<script src="glance/services/service.route.js" type="text/javascript"></script>
+<script src="glance/services/list/list.ctrl.js" type="text/javascript"></script>
 
 <script src="glance/accounts/account.module.js" type="text/javascript"></script>
 <script src="glance/accounts/account.config.js" type="text/javascript"></script>

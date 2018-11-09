@@ -1,0 +1,62 @@
+<md-dialog class="fullscreen-dialog" aria-label="Full Screen Dialog Test" ng-controller="CreateDialogCtrl as ctrl">
+<div class="main-container" flex="100" layout="row"> 
+    <div flex="80" style="border-right:solid 1px #eee">
+    <section class="main-section">
+        <div class="main-content" style="background:#fff">
+            <form name="staticForm">
+		<div layout="column">
+		    <!-- provider -->
+		    <label style="margin-bottom: 20px"> 云服务商</label>
+	            <div layout="row" layout-align="end center">
+	                <div layout="column" ng-repeat="p in ctrl.providers" class="provider">
+	                	<img src="{/ p.img /}" style="width:100px; height:100px;margin-right:20px" ng-click="ctrl.select(p.value)">
+	                	<div class="overlay">
+	                	    <a href="#" class="icon">
+	                	    <i ng-show="ctrl.selected_provider == p.value" class="fa fa-check-circle"></i> 
+	                	    </a>
+	                	 </div>
+	                </div>
+                        <div flex></div>
+	            </div>
+		    <!-- region -->
+		    <label style="margin-bottom: 10px; margin-top:40px"> 区域</label>
+		    <div layout="row" style="margin-top: 10px" layout-wrap>
+		        <div ng-repeat="l in ctrl.regions" class="selected_region">
+		            <div class="region" ng-click="ctrl.select_region(l.location)">
+		                <span class="location">{/l.location/}<span>
+		            </div>
+		            <div class="overlay">
+	                        <a href="#" class="icon">
+	                        <i ng-show="ctrl.selected_region == l.location" class="fa fa-check-circle"></i> 
+	                        </a>
+	                    </div>
+	                	<div class="mark" ng-click="ctrl.select_type(l.value)" ng-hide="ctrl.selected == p.value"></div>
+		         </div>
+		    </div>
+
+		    <!--<md-select ng-model="ctrl.form.region_or_zone" style="min-width: 200px;">
+		        <md-option ng-repeat="region in ctrl.regions" ng-value="region.id">{/region.location/}
+                        </md-option>
+		    </md-select>-->
+		    <!-- type -->
+		    <label style="margin-bottom: 10px; margin-top:40px"> 机器规格</label>
+		    <md-select ng-model="ctrl.form.instance_type" style="min-width: 200px;">
+			    <md-option ng-repeat="type in ctrl.types" ng-value="type.id">{/type.id/}
+                        </md-option>
+                    </md-select>
+	    </form>
+	</div>
+    </section>
+    </div>
+    <div layout="column" flex="20">
+	<pre style="border:none;background:#fff;">服务商:{/ctrl.selected_provider/} </pre>
+	<pre style="border:none;background:#fff">区域: {/ctrl.selected_region/}</pre>
+	<pre style="border:none;background:#fff">规格: {/ctrl.selected_type.id/}</pre>
+	<pre style="border:none;background:#fff">CPU: {/ctrl.selected_type.cpu/}核</pre>
+	<pre style="border:none;background:#fff">内存: {/ctrl.selected_type.memory/}</pre>
+	<pre style="border:none;background:#fff">磁盘: {/ctrl.selected_type.disk/}</pre>
+            <md-button class="md-cancellong" data-ng-click="ctrl.cancel()">取 消</md-button>
+	    <md-button class="md-createlong" data-ng-click="ctrl.create()"data-ng-disabled="staticForm.$invalid" aria-label="create">添加</md-button>
+    </div>
+</div>
+</md-dialog>
