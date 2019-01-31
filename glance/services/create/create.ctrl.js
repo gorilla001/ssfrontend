@@ -1,42 +1,25 @@
 (function () {
     'use strict';
-    angular.module('glance.item')
-        .controller('CreateItemCtrl', CreateItemCtrl);
+    angular.module('glance.service')
+        .controller('CreateServiceCtrl', CreateServiceCtrl);
 
     /* @ngInject */
-    function CreateItemCtrl(appservice, $state, $scope) {
+    function CreateServiceCtrl($scope, $mdDialog, gHttp, $state) {
         var self = this;
 
-	self.form = {
-		"name": "",
-		"desc": "",
-		"price": "",
-		"size": "",
-		"origin": "",
-	}
+	self.node_id = "";
 
-	self.reader = new FileReader();
-	self.form.images = [];
-
-	self.imgUpload = function($event) {       //单次提交图片的函数
-	    var files = $event.target.files;
-            var guid = (new Date()).valueOf();   //通过时间戳创建一个随机数，作为键名使用
-            self.reader.readAsDataURL(files[0]);  //FileReader的方法，把图片转成base64
-            self.reader.onload = function(ev) {
-                $scope.$apply(function(){
-	        self.form.images.push(ev.target.result);	
-                });
-            };
+	self.create = function() {
+		if(self.node_id !== "") {
+		    gHttp.Resource('service.create', {node_id:self.node_id}).post().then(function(data){
+		    	console.log(data);	
+		    });
+		}
 	};
 
-	self.imgDel = function($index) {
-		self.form.images.splice($index, 1);
-	};
-
-	self.createItem = function() {
-		return appservice.createItem(self.form, $scope.staticForm).then(function (data) {
-			$state.go('item.list', {reload: true});
-		});	
+        self.cancel = function() {
+		$mdDialog.hide();
+		$state.reload();
 	};
 
 	self.goBack = function() {

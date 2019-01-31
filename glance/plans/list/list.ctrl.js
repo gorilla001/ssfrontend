@@ -4,7 +4,7 @@
         .controller('ListPlanCtrl', ListPlanCtrl);
 
     /* @ngInject */
-    function ListPlanCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope) {
+    function ListPlanCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope, $mdDialog, $scope) {
         var self = this;
 	self.plans = [];
 	self.selected = [];
@@ -68,5 +68,16 @@
 		    });
 		})
 	};
+
+	self.showDialog = function(event) {
+	    $mdDialog.show({
+	        scope :$scope,
+                preserveScope: false,
+	        templateUrl: 'glance/plans/create/create.html',
+	        targetEvent: event,
+	        controller: 'CreatePlanCtrl',
+	        controllerAs: 'ctrl',
+	    });
+	}
     }
 })();

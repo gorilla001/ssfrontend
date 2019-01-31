@@ -48,15 +48,19 @@
 	</div>
     </section>
     </div>
-    <div layout="column" flex="20">
+    <div layout="column" flex="20" style="padding-top:50px;background:#fff">
 	<pre style="border:none;background:#fff;">服务商:{/ctrl.selected_provider/} </pre>
 	<pre style="border:none;background:#fff">区域: {/ctrl.selected_region/}</pre>
 	<pre style="border:none;background:#fff">规格: {/ctrl.selected_type.id/}</pre>
 	<pre style="border:none;background:#fff">CPU: {/ctrl.selected_type.cpu/}核</pre>
 	<pre style="border:none;background:#fff">内存: {/ctrl.selected_type.memory/}</pre>
 	<pre style="border:none;background:#fff">磁盘: {/ctrl.selected_type.disk/}</pre>
-            <md-button class="md-cancellong" data-ng-click="ctrl.cancel()">取 消</md-button>
-	    <md-button class="md-createlong" data-ng-click="ctrl.create()"data-ng-disabled="staticForm.$invalid" aria-label="create">添加</md-button>
+	<div style="position: absolute;bottom:10px">
+		<div layout="row" width="100%">
+        <md-button style="width:50%" class="md-cancellong" data-ng-click="ctrl.cancel()">取 消</md-button>
+	<md-button style="width:50%" class="md-createlong" data-ng-click="ctrl.create()"data-ng-disabled="staticForm.$invalid" aria-label="create">添加</md-button>
+		</div>
+	</div>
     </div>
 </div>
 </md-dialog>

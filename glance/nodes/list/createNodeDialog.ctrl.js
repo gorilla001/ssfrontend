@@ -3,7 +3,7 @@
     angular.module('glance.node')
         .controller('CreateDialogCtrl', CreateDialogCtrl);
 
-    function CreateDialogCtrl($scope, $mdDialog, gHttp, $timeout) {
+    function CreateDialogCtrl($scope, $mdDialog, gHttp, $timeout, $state) {
         var self = this;
 	this.form = {
 		"region_or_zone": "",
@@ -11,7 +11,8 @@
 	};
 
 	self.cancel = function() {
-		$mdDialog.cancel();
+		$mdDialog.hide();
+		$state.reload();
 	};
 
 	self.create = function() {
@@ -21,9 +22,9 @@
 		    //$state.go('node.list', {reload: true});
 		});
 
-		//$timeout(function () {
-		//	$state.reload();
-	    	//}, 300);
+		$timeout(function () {
+			$state.reload();
+	    	}, 300);
 	};
 	self.selected_provider = "ln"
 

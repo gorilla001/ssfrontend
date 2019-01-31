@@ -4,7 +4,7 @@
         .controller('ListServicesCtrl', ListServicesCtrl);
 
     /* @ngInject */
-    function ListServicesCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope) {
+    function ListServicesCtrl(gHttp,$stateParams, $state, confirmModal, $rootScope, $mdDialog, $scope, $mdPanel) {
         var self = this;
 	self.services = [];
 	self.selected = [];
@@ -76,5 +76,39 @@
 		    });
 		})
 	};
+
+        self.showDialog = function(event) {
+	    //$mdDialog.show({
+	    //    scope :$scope,
+            //    preserveScope: false,
+	    //    templateUrl: 'glance/services/create/create.html',
+	    //    targetEvent: event,
+	    //    controller: 'CreateServiceCtrl',
+	    //    controllerAs: 'ctrl',
+	    //});
+            var position = $mdPanel.newPanelPosition()
+                .absolute()
+                .centerHorizontally();
+            var animation = $mdPanel.newPanelAnimation();
+	    var config = {
+                  attachTo: angular.element(document.body),
+                  controller: 'CreateServiceCtrl', //PanelDialogCtrl,
+                  controllerAs: 'ctrl',
+                  disableParentScroll: false,
+                  templateUrl: 'glance/services/create/create.html',
+                  hasBackdrop: true,
+                  panelClass: 'demox-dialog-example',
+                  position: position,
+	          animation: animation, //panelAnimation,
+	          //fullscreen: true,
+                  trapFocus: true,
+                  zIndex: 10,
+                  clickOutsideToClose: false,
+                  escapeToClose: true,
+                  focusOnOpen: true
+            };
+
+  	    $mdPanel.open(config);	
+	}
     }
 })();

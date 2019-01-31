@@ -2,7 +2,7 @@
     <section class="main-section">
 	<div class="main-content">
 		<section layout="row">
-			<!--<md-button class="md-add" data-ui-sref="node.create"><span>添加</span></md-button>-->
+			<!--<md-button class="md-createsmall" ng-click="ctrl.showDialog1()"><span>添加</span></md-button>-->
 		    <md-button class="md-createsmall" ng-click="ctrl.showDialog($event)"><span>添加</span></md-button>
 		    <!--<md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.disableItem()">下架</md-button>
@@ -35,16 +35,19 @@
 					<th md-column><span>服务数</span></th>
 					<th md-column><span>流量(今日)</span></th>
                     			<th md-column><span>状态</span></th>
+                    			<!--<th md-column><span>查看</span></th>
+                    			<th md-column><span>删除</span></th>-->
                     			<th md-column><span>操作</span></th>
             			</tr>
             			</thead>
             			<tbody md-body>
             				<tr md-row md-select="node" md-select-id="name" md-auto-select data-ng-repeat="node in ctrl.nodes">
                 				<td md-cell>
-							<a href="#"
+							{/node.node.sysinfo.hostname == undefined ? '-' : node.node.sysinfo.hostname/}
+							<!--<a href="#"
                                				data-ui-sref="node.detail({node_id: node.node.id})">
 								{/node.node.sysinfo.hostname == undefined ? '-' : node.node.sysinfo.hostname/}
-							</a>
+							</a>-->
 						</td>
                 				<td md-cell>
 							{/node.node.remote_addr == undefined ? '-' : node.node.remote_addr/}
@@ -78,9 +81,35 @@
                 				<td md-cell>
 							<span class="label {/node.node.status/}">{/ctrl.stateMap[node.node.status]/}</span>
                 				</td>
+                				<!--<td md-cell>
+							<a href="#"
+                               				data-ui-sref="node.detail({node_id: node.node.id})">
+								查看
+							</a>
+
+                				</td>
                 				<td md-cell>
 							<md-button class="md-delete" data-ng-click="ctrl.delete(node.node.id)">删除</md-button>	
-                				</td>
+                				</td>-->
+						<td md-cell>
+						    <md-menu md-offset="0 -5">
+      							<md-button style="text-align: left; min-width:20px" ng-click="$mdOpenMenu($event)">
+							<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                                        </md-button>
+      							<md-menu-content>
+        						<md-menu-item>
+          						    <md-button data-ui-sref="node.detail({node_id: node.node.id})">
+								详情
+          						    </md-button>
+        						</md-menu-item>
+        						<md-menu-item>
+          						    <md-button ng-click="ctrl.delete(node.node.id)">
+								删除
+          						    </md-button>
+        						</md-menu-item>
+							</md-menu-content>
+						</md-menu>
+						</td>
             				</tr>
             			</tbody>
         		</table>

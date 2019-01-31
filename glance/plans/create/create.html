@@ -1,6 +1,7 @@
-<div class="main-container">
+<md-dialog class="fullscreen-dialog" aria-label="">
+<div class="main-container" style="background: #fff">
     <section class="main-section">
-        <div class="main-content">
+        <div class="main-content" style="background: #fff">
             <form name="staticForm">
                 <div layout="row" layout-align="start start" class="form-group form-group-input">
                     <label flex="10">名称</label>
@@ -20,29 +21,6 @@
                     </div>
                     <div flex></div>
                 </div>
-		<div layout="row" layout-align="end center" class="form-group form-group-input">
-                    <label flex="10">图片</label>
-                    <div flex="50" layout="row">
-			    <div data-ng-repeat="item in createItemCtrl.form.images track by $index" layout="column">
-				    <div>
-				    <img enlarge-pic style="margin-right:14px" width="103px" height="103px"
-				    data-ng-src="{/item/}"/>
-				    <span ng-click="createItemCtrl.imgDel($index)" class="close-pic">
-					    <i class="fa fa-close"></i>
-				    </span>
-				    </div>
-			    </div>
-                            <div class="image-upload">
-			        <label for="file-input" ng-if="createItemCtrl.form.image.length != 5"
-					style="padding-top:0px; margin-bottom:0px">
-					<img src="img/add_placeholder.png" width="103px" height="103px">
-   			        </label>
-			    </div>
-			    <input id="file-input" type="file" name="image" ng-upload-change="createItemCtrl.imgUpload($event)" hide/>
-                    </div>
-                    <div flex></div>
-                </div>
-		
                 <div layout="row" layout-align="end center" class="form-group form-group-input">
                     <label flex="10">描述</label>
                     <div flex="50" layout="column">
@@ -72,77 +50,17 @@
                     <div flex></div>
                 </div>
 
-		<div layout="row" layout-align="start center" class="form-group form-group-input">
-                    <label flex="10">规格</label>
-                    <div flex="50" layout="column">
-                        <div flex>
-                            <input type="number" class="form-input"
-                                   name="size" aria-label="size"
-                                   data-ng-model="createItemCtrl.form.size"
-                                   data-required="required">
-                        </div>
-                        <p class="error-info help-info-bottom"
-                           data-ng-show="staticForm.size.$error.required && !staticForm.size.$pristine">
-                            <small>规格不能为空</small>
-                        </p>
-                    </div>
-                    <div flex></div>
-                </div>
-
-		<div layout="row" layout-align="start center" class="form-group form-group-input">
-                    <label flex="10">库存</label>
-                    <div flex="50" layout="column">
-                        <div flex>
-                            <input type="number" class="form-input"
-                                   name="stock" aria-label="stock"
-                                   data-ng-model="createItemCtrl.form.stock"
-                                   data-required="required">
-                        </div>
-                        <p class="error-info help-info-bottom"
-                           data-ng-show="staticForm.stock.$error.required && !staticForm.stock.$pristine">
-                            <small>库存不能为空</small>
-                        </p>
-                    </div>
-                    <div flex></div>
-                </div>
-
-
-                <div layout="row" layout-align="end center" class="form-group form-group-input">
-                    <label flex="10">产地</label>
-                    <div flex="50" layout="column">
-                        <div flex>
-                            <input type="text" class="form-input"
-                                   name="origin" aria-label="origin"
-                                   data-ng-model="createItemCtrl.form.origin"
-                                   data-required="required">
-                        </div>
-                        <p class="error-info help-info-bottom"
-                           data-ng-show="staticForm.origin.$error.required && !staticForm.origin.$pristine">
-                            <small>产地不能为空</small>
-                        </p>
-                    </div>
-                    <div flex></div>
-                </div>
-
                 <div layout="row" class="form-footer-button">
                     <div flex-offset="8">
-                        <md-button class="md-raised md-primary" data-ng-click="createItemCtrl.createItem()"
+                        <md-button class="md-raised md-primary" data-ng-click="ctrl.create()"
                                    data-ng-disabled="staticForm.$invalid" aria-label="create"
                                    >添 加
                         </md-button>
-                        <md-button class="md-primary" data-ng-click="createItemCtrl.goBack()">取 消</md-button>
+                        <md-button class="md-primary" data-ng-click="ctrl.cancel()">取 消</md-button>
                     </div>
                 </div>
-
             </form>
-            <div class="mask" close-Pic>  
-    		<div class="mask-box"></div>  
-    		     <div class="big-pic-wrap">  
-                         <img src="" alt="" class="bigPic" />  
-    		     </div>  
-                </div>  
-	    </div>
-
         </div>
     </section>
 </div>
+</md-dialog>

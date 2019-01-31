@@ -86,11 +86,11 @@
 
         var self = this;
 	self.showDialog = function(evt) {
+		console.log("show dialgo");
 
        $mdDialog.show({
-          clickOutsideToClose: true,
           scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
+          preserveScope: false,  // do not forget this if use parent scope
 	  templateUrl: 'glance/nodes/list/dialog.html',
 	  targetEvent: evt,
 	  controller: 'CreateDialogCtrl',
@@ -193,9 +193,9 @@
         this.animationType = 'slide';
         
         self.showDialog1 = function() {
-          var position = $mdPanel.newPanelPosition().absolute();
-              	    	//.absolute()
-        		//.centerHorizontally();
+          var position = $mdPanel.newPanelPosition()
+              	    	.absolute()
+        		.centerHorizontally();
           var animation = this._mdPanel.newPanelAnimation();
         
           switch(this.openFrom) {
@@ -233,10 +233,10 @@
 
             var config = {
                   attachTo: angular.element(document.body),
-                  controller: PanelDialogCtrl, //PanelDialogCtrl,
+                  controller: 'CreateDialogCtrl', //PanelDialogCtrl,
                   controllerAs: 'ctrl',
                   disableParentScroll: false,
-                  templateUrl: 'glance/nodes/list/panel.tmp.html.html',
+                  templateUrl: 'glance/nodes/list/dialog.html',//'glance/nodes/list/panel.tmp.html',//glance/nodes/list/dialog.html',
                   hasBackdrop: true,
                   panelClass: 'demox-dialog-example',
                   position: position,

@@ -2,10 +2,10 @@
     <section class="main-section">
 	<div class="main-content">
 		<section layout="row">
-		    <md-button class="md-add" data-ui-sref="item.create"><span>添加</span></md-button>
-		    <md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
+		    <md-button class="md-createsmall" ng-click="ctrl.showDialog($event)"><span>添加</span></md-button>
+		    <!--<md-button class="md-second" data-ng-click="ctrl.enableItem()">上架</md-button>
 		    <md-button class="md-second" data-ng-click="ctrl.disableItem()">下架</md-button>
-		    <md-button class="md-delete right" data-ng-click="ctrl.deleteItem()">删除</md-button>
+		    <md-button class="md-delete right" data-ng-click="ctrl.deleteItem()">删除</md-button>-->
 		</section>
 	    <md-toolbar class="md-table-toolbar md-default">
                 <div class="md-toolbar-tools">
@@ -21,7 +21,8 @@
 	    <md-content>
 		    <md-table-container> 
 			<div> 
-        		<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">
+				<!--<table md-table md-row-select multiple ng-model="ctrl.selected" md-progress="promise">-->
+        		<table md-table ng-model="ctrl.selected" md-progress="promise">
             			<thead md-head md-order=""
 			      md-on-reorder="" fix-head>
             			<tr md-row>
